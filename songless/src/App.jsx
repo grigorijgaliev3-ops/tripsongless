@@ -1,101 +1,221 @@
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
-const TRACKS = [
-  { file: "1. MR.BL & TF - AK.mp3",                       answer: "AK" },
-  { file: "2. TRIPPL FLOW, LPUNK - KROST.mp3",            answer: "KROST" },
-  { file: "3. LiL PUNK feat. TRIPPL FLOW - КЭШ.mp3",      answer: "КЭШ" },
-  { file: "4. TRIPPL FLOW - наш день 2.0.mp3",            answer: "наш день 2.0" },
-  { file: "5. TRIPPL FLOW - СВЯЗЬ.mp3",                   answer: "СВЯЗЬ" },
-  { file: "6. TRIPPL FLOW (FEAT.LP) - ААААААА.mp3",       answer: "ААААААА" },
-  { file: "7. TRIPPL FLOW - FUHTA.mp3",                   answer: "FUHTA" },
-  { file: "8. trippl flow - 14.mp3",                      answer: "14" },
-  { file: "9. TRIPPL FLOW - анечке.mp3",                  answer: "анечке" },
-  { file: "10. TRIPPL FLOW - IN THE SWAG.mp3",            answer: "IN THE SWAG" },
-  { file: "11. trippl flow - Когда стану популярным.mp3", answer: "Когда стану популярным" },
-  { file: "12. trippl flow - пару слов про бать.mp3",     answer: "пару слов про бать" },
-  { file: "13. TRIPPL FLOW, LPUNK - КАЖДЫЙ ДЕНЬ (ремикс).mp3", answer: "КАЖДЫЙ ДЕНЬ (ремикс)" },
-  { file: "14. TRIPPL FLOW - косячок.mp3",                answer: "косячок" },
-  { file: "15. TRIPPL FLOW - ЛУЧШИЕ ДРУЗЬЯ.mp3",          answer: "ЛУЧШИЕ ДРУЗЬЯ" },
-  { file: "16. TF - собака.mp3",                          answer: "собака" },
-  { file: "17. TRIPPL FLOW - осв.mp3",                    answer: "осв" },
-  { file: "18. TRIPPL FLOW - GANGSHIT.mp3",               answer: "GANGSHIT" },
-  { file: "19. TRIPPL FLOW - МОЛОДОЙ ТРИПЛ.mp3",          answer: "МОЛОДОЙ ТРИПЛ" },
-  { file: "20. TRIPPL FLOW - NOKIA (3310).mp3",           answer: "NOKIA (3310)" },
-  { file: "21. TRIPPL FLOW - МОЙ СТИЛЬ.mp3",              answer: "МОЙ СТИЛЬ" },
-  { file: "22. TRIPPL FLOW, LPUNK - Маленький панк.mp3",  answer: "Маленький панк" },
-  { file: "23. TRIPPL FLOW - TRIPPL FLOW.mp3",            answer: "TRIPPL FLOW" },
-  { file: "24. LIL - PUHK.mp3",                           answer: "PUHK" },
-  { file: "25. TRIPPL FLOW - ОНИ ВСЕ ЗНАЛИ.mp3",          answer: "ОНИ ВСЕ ЗНАЛИ" },
-  { file: "26. TRIPPL FLOW - ФРИСТАИЛ.mp3",               answer: "ФРИСТАИЛ" },
-  { file: "27. trippl flow - лпунк пидр.mp3",             answer: "лпунк пидр" },
-  { file: "28. tf & фрукты - наш день.mp3",               answer: "наш день" },
-  { file: "29. TRIPPL FLOW feat. LiL PUNK - Каждый день.mp3", answer: "Каждый день" },
-  { file: "30. TRIPPL FLOW - оу да.mp3",                  answer: "оу да" },
-  { file: "31. tf & mr.Bl - друг.mp3",                    answer: "друг" },
-  { file: "32. tf - деньги(offical aiduo).mp3",           answer: "деньги" },
-  { file: "33. TF - ЧУПА-ЧУПС.mp3",                       answer: "ЧУПА-ЧУПС" },
-  { file: "34. TF feat. LiL PUNK - Party.mp3",            answer: "Party" },
-  { file: "35. TF - ЛЮБОВЬ.mp3",                          answer: "ЛЮБОВЬ" },
-  { file: "36. TF - Ебать я умный.mp3",                   answer: "Ебать я умный" },
-  { file: "37. TF - ДИСС НА TRIPPL FLOW.mp3",             answer: "ДИСС НА TRIPPL FLOW" },
-  { file: "38. TF - Цепи.mp3",                            answer: "Цепи" },
-  { file: "39. TF - Я ТЭФЭ.mp3",                          answer: "Я ТЭФЭ" },
-  { file: "40. TF - FUCK PLAY.mp3",                       answer: "FUCK PLAY" },
-  { file: "41. TF - НА БИТАХ.mp3",                        answer: "НА БИТАХ" },
-  { file: "42. TRIPPL FLOW - КИВИ.mp3",                   answer: "КИВИ" },
-  { file: "43. TF - НАРКОТИКИ.mp3",                       answer: "НАРКОТИКИ" },
-  { file: "44. TRIPPL FLOW - ЧСВ.mp3",                    answer: "ЧСВ" },
-  { file: "45. MC FRIGUS - IVAN NUMBER ONE.mp3",          answer: "IVAN NUMBER ONE" },
-  { file: "46. TRIPPL FLOW - Комп.mp3",                   answer: "Комп" },
-  { file: "47. trippl flow - катана.mp3",                 answer: "катана" },
-  { file: "48. trippl flow - БМВ.mp3",                    answer: "БМВ" },
-  { file: "49. tripll flow - 02.mp3",                     answer: "02" },
-  { file: "50. TRIPPL FLOW - 15.mp3",                     answer: "15" },
-  { file: "51. trippl flow - intro.mp3",                  answer: "intro" },
-  { file: "52. TRIPPL FLOW - NOKIA (3310).mp3",           answer: "NOKIA (3310)" },
-  { file: "53. TRIPL FLOW - я перевернул фитами жидов.mp3", answer: "я перевернул фитами жидов" },
-  { file: "54. TF feat. 7stars, Alonilon - троинное.mp3", answer: "троинное" },
-  { file: "55. TF, 7stars - Папам.mp3",                   answer: "Папам" },
-  { file: "56. TF - Scr3amrightnow.mp3",                  answer: "Scr3amrightnow" },
-  { file: "57. TF, 7stars - диджейпапа.mp3",              answer: "диджейпапа" },
-  { file: "58. TF, 7STARS - Кхекхешнейлефапэпэ.mp3",      answer: "Кхекхешнейлефапэпэ" },
-  { file: "59. TF, 7STARS - ILL.mp3",                     answer: "ILL" },
-  { file: "60. TF, 7STARS - Кристина.mp3",                answer: "Кристина" },
-  { file: "61. TF, 7STARS - Loveisdeath.mp3",             answer: "Loveisdeath" },
-  { file: "62. TF, ALONILON - ПАХНЕШЬ ЦВЕТАМИ.mp3",       answer: "ПАХНЕШЬ ЦВЕТАМИ" },
-  { file: "63. TF, BYCHESS, MARKPULYA, ALONILON - САЙФЕР АФТЕРПАТИ.mp3", answer: "САЙФЕР АФТЕРПАТИ" },
-  { file: "64. TF - пуэр.mp3",                            answer: "пуэр" },
-  { file: "65. TF, 7stars - Сасок.mp3",                   answer: "Сасок" },
-  { file: "66. Alonilon, TF - САДИК.mp3",                 answer: "САДИК" },
-  { file: "67. tf, Alonilon - СЕВЕР.mp3",                 answer: "СЕВЕР" },
-  { file: "68. TF и другие - НЕ ВЫЕБЫВАЙСЯ.mp3",          answer: "НЕ ВЫЕБЫВАЙСЯ" },
-  { file: "69. TF, bychess, alonilon - NEW LOVE.mp3",     answer: "NEW LOVE" },
+const PUSHKA_TRACKS = [
+  { file: "pushka/1. Марк Пуля, Георгий Пушка - СИГМА.mp3",                              answer: "СИГМА" },
+  { file: "pushka/2. Genius, Марк Пуля, 7uglu, Георгий Пушка - Cайфер.mp3",              answer: "Cайфер" },
+  { file: "pushka/3. Genius, Марк Пуля, Георгий Пушка - Первый(второй).mp3",             answer: "Первый(второй)" },
+  { file: "pushka/4. Марк Пуля, Георгий Пушка - Волчара.mp3",                            answer: "Волчара" },
+  { file: "pushka/5. Георгий Пушка - Хавчик.mp3",                                        answer: "Хавчик" },
+  { file: "pushka/6. Марк Пуля, Георгий Пушка - Метрошка.mp3",                           answer: "Метрошка" },
+  { file: "pushka/7. Марк Пуля, Георгий Пушка - ЗОНДБЕ МАЗГЕ.mp3",                       answer: "ЗОНДБЕ МАЗГЕ" },
+  { file: "pushka/8. Марк Пуля, Георгий Пушка - виайпиидабалатория.mp3",                 answer: "виайпиидабалатория" },
+  { file: "pushka/9. Георгий Пушка - скуфяра.mp3",                                       answer: "скуфяра" },
+  { file: "pushka/10. Bychess, Георгий Пушка - Зюганов.mp3",                             answer: "Зюганов" },
+  { file: "pushka/11. Георгий Пушка - brawlcore.mp3",                                    answer: "brawlcore" },
+  { file: "pushka/12. Марк Пуля, Георгий Пушка - джо1нт.mp3",                            answer: "джо1нт" },
+  { file: "pushka/13. Георгий Пушка - ГОООООООООООООООООЛ.mp3",                          answer: "ГОООООООООООООООООЛ" },
+  { file: "pushka/14. Георгий Пушка - долбит нормально speedup.mp3",                     answer: "долбит нормально speedup" },
+  { file: "pushka/15. Георгий Пушка - лоу фай бейби.mp3",                                answer: "лоу фай бейби" },
+  { file: "pushka/16. ГЕОРГИЙ ПУШКА - О СЕБЕ(1 РАУНД).mp3",                              answer: "О СЕБЕ(1 РАУНД)" },
+  { file: "pushka/17. Георгий Пушка - ФУ ВАНЯЕТ БЕНЗИНОМ ЛУКОЙЛ РЕЧЕВКА 1.mp3",          answer: "ФУ ВАНЯЕТ БЕНЗИНОМ ЛУКОЙЛ РЕЧЕВКА 1" },
+  { file: "pushka/18. bychess, Георгий Пушка - птичка40.mp3",                            answer: "птичка40" },
+  { file: "pushka/19. Марк Пуля, Георгий Пушка - пятко.mp3",                             answer: "пятко" },
+  { file: "pushka/20. Георгий Пушка - РОБЛОКСКОР.mp3",                                   answer: "РОБЛОКСКОР" },
+  { file: "pushka/21. Марк Пуля, Георгий Пушка - ТАЙЛЕР40.mp3",                          answer: "ТАЙЛЕР40" },
+  { file: "pushka/22. Георгий Пушка - #тащи.mp3",                                        answer: "#тащи" },
+  { file: "pushka/23. Георгий Пушка - ШАРИК40.mp3",                                      answer: "ШАРИК40" },
+  { file: "pushka/24. Георгий Пушка - ненавижу.mp3",                                     answer: "ненавижу" },
+  { file: "pushka/25. MAGI$TR98, Георгий Пушка - wizzard.mp3",                           answer: "wizzard" },
+  { file: "pushka/26. alonilon,ivan rist, bychess, Георгий Пушка - песня про проц.mp3",  answer: "песня про проц" },
+  { file: "pushka/27. Георгий Пушка - VENOM.mp3",                                        answer: "VENOM" },
+  { file: "pushka/28. Георгий Пушка - рома устинов.mp3",                                 answer: "рома устинов" },
+  { file: "pushka/29. bychess, Георгий Пушка - занозин.mp3",                             answer: "занозин" },
+  { file: "pushka/30. Георгий Пушка - бейблейд(prod.soulrin).mp3",                       answer: "бейблейд(prod.soulrin)" },
+  { file: "pushka/31. Георгий Пушка - Цветок.mp3",                                       answer: "Цветок" },
+  { file: "pushka/32. Георгий Пушка - купец.mp3",                                        answer: "купец" },
+  { file: "pushka/33. Георгий Пушка - таблица логарифмов.mp3",                           answer: "таблица логарифмов" },
+  { file: "pushka/34. bychess, Георгий Пушка - отлил в кусты.mp3",                       answer: "отлил в кусты" },
+  { file: "pushka/35. bychess, Георгий Пушка - плавильня.mp3",                           answer: "плавильня" },
+  { file: "pushka/36. bychess, Георгий Пушка - фонк дуо.mp3",                            answer: "фонк дуо" },
+  { file: "pushka/37. Георгий Пушка - цветочный фонк.mp3",                               answer: "цветочный фонк" },
+  { file: "pushka/38. Георгий Пушка - хачифури шава.mp3",                                answer: "хачифури шава" },
+  { file: "pushka/39. Георгий Пушка - ск репер(prod.cl6udly).mp3",                       answer: "ск репер(prod.cl6udly)" },
+  { file: "pushka/40. Георгий Пушка - минутка джерк.mp3",                                answer: "минутка джерк" },
+  { file: "pushka/41. Георгий Пушка - яна сида.mp3",                                     answer: "яна сида" },
+  { file: "pushka/42. Георгий Пушка - гитхаб.mp3",                                       answer: "гитхаб" },
+  { file: "pushka/43. Георгий Пушка - ЦВЕТОК 2.mp3",                                     answer: "ЦВЕТОК 2" },
+  { file: "pushka/44. bychess, Георгий Пушка - дно.mp3",                                 answer: "дно" },
+  { file: "pushka/45. bychess, Георгий Пушка - последняя ночь.mp3",                      answer: "последняя ночь" },
+  { file: "pushka/46. Георгий Пушка - методичка.mp3",                                    answer: "методичка" },
+  { file: "pushka/47. Марк Пуля, Георгий Пушка -  мишко31.mp3",                          answer: "мишко31" },
+  { file: "pushka/48. Марк Пуля, Георгий Пушка - Приведение.mp3",                        answer: "Приведение" },
+  { file: "pushka/49. Георгий Пушка - eesti.mp3",                                        answer: "eesti" },
+  { file: "pushka/50. bychess, Георгий Пушка - ДНО NEW YEAR.mp3",                        answer: "ДНО NEW YEAR" },
+  { file: "pushka/51. Георгий Пушка - SBORy.mp3",                                        answer: "SBORy" },
+  { file: "pushka/52. Георгий Пушка - ded moroz.mp3",                                    answer: "ded moroz" },
+  { file: "pushka/53. Георгий Пушка - телки какие то.mp3",                               answer: "телки какие то" },
+  { file: "pushka/54. bychess, Георгий Пушка - HRANITEL'.mp3",                           answer: "HRANITEL'" },
+  { file: "pushka/55. Георгий Пушка - демо148..mp3",                                     answer: "демо148." },
+  { file: "pushka/56. Кирилл Граната, Георгий Пушка, bychess - 3 программиста.mp3",      answer: "3 программиста" },
+  { file: "pushka/57. Георгий Пушка - zabolel.mp3",                                      answer: "zabolel" },
+  { file: "pushka/58. Георгий Пушка - grably mikhail vladi.mp3",                         answer: "grably mikhail vladi" },
+  { file: "pushka/59. Георгий Пушка - подумать.mp3",                                     answer: "подумать" },
+  { file: "pushka/60. Георгий Пушка - в обосанной хате жилось даже лучше.mp3",           answer: "в обосанной хате жилось даже лучше" },
+  { file: "pushka/61. alonilon, bychess, Георгий Пушка - в прайме(север 2).mp3",         answer: "в прайме(север 2)" },
+  { file: "pushka/62. alonilon, Георгий Пушка - два богатыря.mp3",                       answer: "два богатыря" },
+  { file: "pushka/63. Георгий Пушка - максим викторович чччччч.mp3",                     answer: "максим викторович чччччч" },
+  { file: "pushka/64. alonilon, Георгий Пушка - nava0.mp3",                              answer: "nava0" },
+  { file: "pushka/65. 30K 2.mp3",                                                        answer: "30K 2" },
+  { file: "pushka/66. Георгий Пушка - MELLSTROY.mp3",                                    answer: "MELLSTROY" },
+  { file: "pushka/67. Георгий Пушка и др. - дизайнерская.mp3",                           answer: "дизайнерская" },
+  { file: "pushka/68. Георгий Пушка и др. - no cap.mp3",                                 answer: "no cap" },
+  { file: "pushka/69. Георгий Пушка, Марк Пуля - ЛУКОЙЛ 2[prod. pipe bomb].mp3",         answer: "ЛУКОЙЛ 2[prod. pipe bomb]" },
+  { file: "pushka/70. Георгий Пушка - 30K.mp3",                                          answer: "30K" },
+  { file: "pushka/71. Георгий Пушка - 30К3.mp3",                                         answer: "30К3" },
 ];
+
+const TRIPPL_TRACKS = [
+  { file: "trippl/1. MR.BL & TF - AK.mp3",                       answer: "AK" },
+  { file: "trippl/2. TRIPPL FLOW, LPUNK - KROST.mp3",            answer: "KROST" },
+  { file: "trippl/3. LiL PUNK feat. TRIPPL FLOW - КЭШ.mp3",      answer: "КЭШ" },
+  { file: "trippl/4. TRIPPL FLOW - наш день 2.0.mp3",            answer: "наш день 2.0" },
+  { file: "trippl/5. TRIPPL FLOW - СВЯЗЬ.mp3",                   answer: "СВЯЗЬ" },
+  { file: "trippl/6. TRIPPL FLOW (FEAT.LP) - ААААААА.mp3",       answer: "ААААААА" },
+  { file: "trippl/7. TRIPPL FLOW - FUHTA.mp3",                   answer: "FUHTA" },
+  { file: "trippl/8. trippl flow - 14.mp3",                      answer: "14" },
+  { file: "trippl/9. TRIPPL FLOW - анечке.mp3",                  answer: "анечке" },
+  { file: "trippl/10. TRIPPL FLOW - IN THE SWAG.mp3",            answer: "IN THE SWAG" },
+  { file: "trippl/11. trippl flow - Когда стану популярным.mp3", answer: "Когда стану популярным" },
+  { file: "trippl/12. trippl flow - пару слов про бать.mp3",     answer: "пару слов про бать" },
+  { file: "trippl/13. TRIPPL FLOW, LPUNK - КАЖДЫЙ ДЕНЬ (ремикс).mp3", answer: "КАЖДЫЙ ДЕНЬ (ремикс)" },
+  { file: "trippl/14. TRIPPL FLOW - косячок.mp3",                answer: "косячок" },
+  { file: "trippl/15. TRIPPL FLOW - ЛУЧШИЕ ДРУЗЬЯ.mp3",          answer: "ЛУЧШИЕ ДРУЗЬЯ" },
+  { file: "trippl/16. TF - собака.mp3",                          answer: "собака" },
+  { file: "trippl/17. TRIPPL FLOW - осв.mp3",                    answer: "осв" },
+  { file: "trippl/18. TRIPPL FLOW - GANGSHIT.mp3",               answer: "GANGSHIT" },
+  { file: "trippl/19. TRIPPL FLOW - МОЛОДОЙ ТРИПЛ.mp3",          answer: "МОЛОДОЙ ТРИПЛ" },
+  { file: "trippl/20. TRIPPL FLOW - NOKIA (3310).mp3",           answer: "NOKIA (3310)" },
+  { file: "trippl/21. TRIPPL FLOW - МОЙ СТИЛЬ.mp3",              answer: "МОЙ СТИЛЬ" },
+  { file: "trippl/22. TRIPPL FLOW, LPUNK - Маленький панк.mp3",  answer: "Маленький панк" },
+  { file: "trippl/23. TRIPPL FLOW - TRIPPL FLOW.mp3",            answer: "TRIPPL FLOW" },
+  { file: "trippl/24. LIL - PUHK.mp3",                           answer: "PUHK" },
+  { file: "trippl/25. TRIPPL FLOW - ОНИ ВСЕ ЗНАЛИ.mp3",          answer: "ОНИ ВСЕ ЗНАЛИ" },
+  { file: "trippl/26. TRIPPL FLOW - ФРИСТАИЛ.mp3",               answer: "ФРИСТАИЛ" },
+  { file: "trippl/27. trippl flow - лпунк пидр.mp3",             answer: "лпунк пидр" },
+  { file: "trippl/28. tf & фрукты - наш день.mp3",               answer: "наш день" },
+  { file: "trippl/29. TRIPPL FLOW feat. LiL PUNK - Каждый день.mp3", answer: "Каждый день" },
+  { file: "trippl/30. TRIPPL FLOW - оу да.mp3",                  answer: "оу да" },
+  { file: "trippl/31. tf & mr.Bl - друг.mp3",                    answer: "друг" },
+  { file: "trippl/32. tf - деньги(offical aiduo).mp3",           answer: "деньги" },
+  { file: "trippl/33. TF - ЧУПА-ЧУПС.mp3",                       answer: "ЧУПА-ЧУПС" },
+  { file: "trippl/34. TF feat. LiL PUNK - Party.mp3",            answer: "Party" },
+  { file: "trippl/35. TF - ЛЮБОВЬ.mp3",                          answer: "ЛЮБОВЬ" },
+  { file: "trippl/36. TF - Ебать я умный.mp3",                   answer: "Ебать я умный" },
+  { file: "trippl/37. TF - ДИСС НА TRIPPL FLOW.mp3",             answer: "ДИСС НА TRIPPL FLOW" },
+  { file: "trippl/38. TF - Цепи.mp3",                            answer: "Цепи" },
+  { file: "trippl/39. TF - Я ТЭФЭ.mp3",                          answer: "Я ТЭФЭ" },
+  { file: "trippl/40. TF - FUCK PLAY.mp3",                       answer: "FUCK PLAY" },
+  { file: "trippl/41. TF - НА БИТАХ.mp3",                        answer: "НА БИТАХ" },
+  { file: "trippl/42. TRIPPL FLOW - КИВИ.mp3",                   answer: "КИВИ" },
+  { file: "trippl/43. TF - НАРКОТИКИ.mp3",                       answer: "НАРКОТИКИ" },
+  { file: "trippl/44. TRIPPL FLOW - ЧСВ.mp3",                    answer: "ЧСВ" },
+  { file: "trippl/45. MC FRIGUS - IVAN NUMBER ONE.mp3",          answer: "IVAN NUMBER ONE" },
+  { file: "trippl/46. TRIPPL FLOW - Комп.mp3",                   answer: "Комп" },
+  { file: "trippl/47. trippl flow - катана.mp3",                 answer: "катана" },
+  { file: "trippl/48. trippl flow - БМВ.mp3",                    answer: "БМВ" },
+  { file: "trippl/49. tripll flow - 02.mp3",                     answer: "02" },
+  { file: "trippl/50. TRIPPL FLOW - 15.mp3",                     answer: "15" },
+  { file: "trippl/51. trippl flow - intro.mp3",                  answer: "intro" },
+  { file: "trippl/52. TRIPPL FLOW - NOKIA (3310).mp3",           answer: "NOKIA (3310)" },
+  { file: "trippl/53. TRIPL FLOW - я перевернул фитами жидов.mp3", answer: "я перевернул фитами жидов" },
+  { file: "trippl/54. TF feat. 7stars, Alonilon - троинное.mp3", answer: "троинное" },
+  { file: "trippl/55. TF, 7stars - Папам.mp3",                   answer: "Папам" },
+  { file: "trippl/56. TF - Scr3amrightnow.mp3",                  answer: "Scr3amrightnow" },
+  { file: "trippl/57. TF, 7stars - диджейпапа.mp3",              answer: "диджейпапа" },
+  { file: "trippl/58. TF, 7STARS - Кхекхешнейлефапэпэ.mp3",      answer: "Кхекхешнейлефапэпэ" },
+  { file: "trippl/59. TF, 7STARS - ILL.mp3",                     answer: "ILL" },
+  { file: "trippl/60. TF, 7STARS - Кристина.mp3",                answer: "Кристина" },
+  { file: "trippl/61. TF, 7STARS - Loveisdeath.mp3",             answer: "Loveisdeath" },
+  { file: "trippl/62. TF, ALONILON - ПАХНЕШЬ ЦВЕТАМИ.mp3",       answer: "ПАХНЕШЬ ЦВЕТАМИ" },
+  { file: "trippl/63. TF, BYCHESS, MARKPULYA, ALONILON - САЙФЕР АФТЕРПАТИ.mp3", answer: "САЙФЕР АФТЕРПАТИ" },
+  { file: "trippl/64. TF - пуэр.mp3",                            answer: "пуэр" },
+  { file: "trippl/65. TF, 7stars - Сасок.mp3",                   answer: "Сасок" },
+  { file: "trippl/66. Alonilon, TF - САДИК.mp3",                 answer: "САДИК" },
+  { file: "trippl/67. tf, Alonilon - СЕВЕР.mp3",                 answer: "СЕВЕР" },
+  { file: "trippl/68. TF и другие - НЕ ВЫЕБЫВАЙСЯ.mp3",          answer: "НЕ ВЫЕБЫВАЙСЯ" },
+  { file: "trippl/69. TF, bychess, alonilon - NEW LOVE.mp3",     answer: "NEW LOVE" },
+];
+
+const MODES = {
+  pushka: {
+    id: "pushka",
+    name: "ГЕОРГИЙ ПУШКА",
+    cover: "/covers/pushka.jpg",
+    accent: "#f472b6",
+    symbol: "🔫",
+    tracks: PUSHKA_TRACKS,
+  },
+  trippl: {
+    id: "trippl",
+    name: "TRIPPL FLOW",
+    cover: "/covers/trippl.jpg",
+    accent: "#8b5cff",
+    symbol: "🧂",
+    tracks: TRIPPL_TRACKS,
+  },
+};
+
+const MODE_ORDER = ["pushka", "trippl"];
 
 const DURATIONS = [0.5, 1, 2, 4, 8, 16];
 const MAX_ATTEMPTS = 6;
-
 const SCORES = [6, 5, 4, 3, 2, 1];
-const MAX_SCORE = TRACKS.length * SCORES[0];
 
 const normalizeStrict = (s) => s.toLowerCase().replace(/[^a-zа-яё0-9]/gi, "");
 const normalizeSoft = (s) =>
   s.toLowerCase().replace(/[–—−]/g, "-").replace(/\s+/g, " ").trim();
-
 const displayName = (file) =>
-  file.replace(/^\d+\.\s*/, "").replace(/\.(mp3|m4a)$/i, "");
+  file.split("/").pop().replace(/^\d+\.\s*/, "").replace(/\.(mp3|m4a)$/i, "");
 
-// определение тач-устройства — чтобы не открывать клаву автоматом
 const isTouch = () =>
   typeof window !== "undefined" &&
   ("ontouchstart" in window || navigator.maxTouchPoints > 0);
 
-function SaltBackground({ boost }) {
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ============= Универсальный фон с эмодзи ============= */
+function ParticleBackground({ boost, symbol = "🧂" }) {
   const canvasRef = useRef(null);
   const particlesRef = useRef([]);
   const boostRef = useRef(0);
   const rafRef = useRef(null);
+  const symbolRef = useRef(symbol);
+
+  useEffect(() => {
+    symbolRef.current = symbol;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const count = particlesRef.current.length || 20;
+    particlesRef.current = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: 14 + Math.random() * 22,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      rot: (Math.random() - 0.5) * 0.2,
+      rotSpeed: (Math.random() - 0.5) * 0.005,
+      alpha: 0.12 + Math.random() * 0.18,
+      phase: Math.random() * Math.PI * 2,
+    }));
+  }, [symbol]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -142,6 +262,7 @@ function SaltBackground({ boost }) {
       const scaleMult = 1 + b * 0.4;
 
       ctx.clearRect(0, 0, width, height);
+      const currentSymbol = symbolRef.current;
 
       for (const p of particlesRef.current) {
         p.x += p.vx * dt * speedMult;
@@ -166,7 +287,7 @@ function SaltBackground({ boost }) {
         ctx.globalAlpha = p.alpha * (1 + b * 0.9);
         ctx.shadowBlur = 20 * (1 + b * 2);
         ctx.shadowColor = "rgba(167, 139, 250, 0.9)";
-        ctx.fillText("🧂", 0, 0);
+        ctx.fillText(currentSymbol, 0, 0);
         ctx.restore();
       }
 
@@ -183,17 +304,64 @@ function SaltBackground({ boost }) {
   return <canvas ref={canvasRef} className="bg-canvas" />;
 }
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
+/* ============= Лобби ============= */
+function Lobby({ onPick }) {
+  return (
+    <div className="app">
+      <div className="inner">
+        <header className="header">
+          <h1>🎵 Угадай трек</h1>
+          <div className="subtitle">ВЫБЕРИ АРТИСТА</div>
+        </header>
+
+        <div className="lobby">
+          {MODE_ORDER.map((key) => {
+            const m = MODES[key];
+            return (
+              <button
+                key={key}
+                className="mode-card"
+                style={{ "--accent": m.accent }}
+                onClick={() => onPick(key)}
+              >
+                <div className="mode-cover">
+                  <img src={m.cover} alt={m.name} />
+                  <div className="mode-cover-glow" />
+                </div>
+                <div className="mode-info">
+                  <div className="mode-name">{m.name}</div>
+                  <div className="mode-subtitle">{m.subtitle}</div>
+                  <div className="mode-count">
+                    {m.tracks.length} {pluralTracks(m.tracks.length)}
+                  </div>
+                </div>
+                <div className="mode-play">▶ Играть</div>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="hint">
+          Выбери артиста и угадывай его треки по коротким отрывкам
+        </div>
+      </div>
+    </div>
+  );
 }
 
+function pluralTracks(n) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return "трек";
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return "трека";
+  return "треков";
+}
+
+/* ============= Игра ============= */
 export default function App() {
-  const [pool, setPool] = useState(() => shuffle(TRACKS));
+  const [mode, setMode] = useState(null);
+
+  const [pool, setPool] = useState([]);
   const [poolIndex, setPoolIndex] = useState(0);
 
   const [guess, setGuess] = useState("");
@@ -220,12 +388,16 @@ export default function App() {
   const rafRef = useRef(null);
   const startTimeRef = useRef(0);
 
-  const track = pool[poolIndex];
+  const modeData = mode ? MODES[mode] : null;
+  const track = modeData ? pool[poolIndex] : null;
   const tracksTotal = pool.length;
+  const maxScore = modeData ? modeData.tracks.length * SCORES[0] : 0;
+
+  const bgSymbol = modeData ? modeData.symbol : "🎵";
 
   const query = normalizeSoft(guess);
-  const matches = query
-    ? TRACKS.filter((t) => {
+  const matches = modeData && query
+    ? modeData.tracks.filter((t) => {
         const shown = normalizeSoft(displayName(t.file));
         return shown.includes(query) || normalizeSoft(t.answer).includes(query);
       }).slice(0, 30)
@@ -241,37 +413,35 @@ export default function App() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  const resetForTrack = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    cancelAnimationFrame(rafRef.current);
-    setPlaying(false);
-    setElapsed(0);
+  const startMode = (key) => {
+    const m = MODES[key];
+    if (!m) return;
+    setMode(key);
+    setPool(shuffle(m.tracks));
+    setPoolIndex(0);
     setGuess("");
     setHistory([]);
     setCurrent(0);
     setLocked(false);
     setResult(null);
+    setBoost(0);
     setTrackScore(null);
+    setTotalScore(0);
+    setGameOver(false);
+    setPlaying(false);
+    setElapsed(0);
     setOpen(false);
   };
 
-  const newGame = () => {
+  const backToLobby = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     cancelAnimationFrame(rafRef.current);
+    audioRef.current?.pause();
+    setMode(null);
+    setPool([]);
+    setPoolIndex(0);
     setPlaying(false);
     setElapsed(0);
-    setGuess("");
-    setHistory([]);
-    setCurrent(0);
-    setLocked(false);
-    setResult(null);
-    setTrackScore(null);
-    setOpen(false);
-    setBoost(0);
-    setPool(shuffle(TRACKS));
-    setPoolIndex(0);
-    setTotalScore(0);
-    setGameOver(false);
   };
 
   useEffect(() => {
@@ -284,7 +454,6 @@ export default function App() {
     };
   }, [track]);
 
-  // Фокус в input — только на десктопе, чтобы на мобилке не вылезала клава
   useEffect(() => {
     if (isTouch()) return;
     inputRef.current?.focus();
@@ -308,7 +477,6 @@ export default function App() {
 
   const play = () => {
     if (locked || !audioRef.current) return;
-    // на мобилке скрываем клаву, чтобы она не мешала слушать
     if (isTouch()) inputRef.current?.blur();
     cancelAnimationFrame(rafRef.current);
     try {
@@ -386,7 +554,6 @@ export default function App() {
   const skip = () => {
     if (locked) return;
     setHistory((h) => [...h, { text: "— пропуск —", state: "skip" }]);
-    // на мобилке гасим клаву, чтобы не вылазила
     if (isTouch()) inputRef.current?.blur();
     audioRef.current?.pause();
     setPlaying(false);
@@ -431,11 +598,17 @@ export default function App() {
     }
   };
 
-  const attemptsLeft = MAX_ATTEMPTS - current;
-  const pct = Math.min(100, (elapsed / currentDur) * 100);
+  if (!mode) {
+    return (
+      <>
+        <ParticleBackground boost={0} symbol="🎵" />
+        <Lobby onPick={startMode} />
+      </>
+    );
+  }
 
   if (gameOver) {
-    const percent = Math.round((totalScore / MAX_SCORE) * 100);
+    const percent = maxScore ? Math.round((totalScore / maxScore) * 100) : 0;
     let verdict = "Неплохо!";
     if (percent === 100) verdict = "Идеально! Ты легенда 🐐";
     else if (percent >= 80) verdict = "Огонь! 🔥";
@@ -445,30 +618,29 @@ export default function App() {
 
     return (
       <>
-        <SaltBackground boost={1} />
+        <ParticleBackground boost={1} symbol={bgSymbol} />
         <div className="app">
           <div className="inner">
             <header className="header">
               <h1>🏁 Игра окончена</h1>
-              <div className="subtitle">ФИНАЛЬНЫЙ СЧЁТ</div>
+              <div className="subtitle">{modeData.name}</div>
             </header>
 
             <div className="board">
               <div className="gameover">
                 <div className="gameover-score">
                   {totalScore}
-                  <span className="gameover-max"> / {MAX_SCORE}</span>
+                  <span className="gameover-max"> / {maxScore}</span>
                 </div>
                 <div className="gameover-percent">{percent}%</div>
                 <div className="gameover-verdict">{verdict}</div>
-                <button className="btn primary new-btn" onClick={newGame}>
+                <button className="btn primary new-btn" onClick={() => startMode(mode)}>
                   🔄 Играть заново
                 </button>
+                <button className="btn ghost new-btn" onClick={backToLobby}>
+                  ← К выбору артиста
+                </button>
               </div>
-            </div>
-
-            <div className="hint">
-              Всего треков: {TRACKS.length} · За каждый угаданный с 1-й попытки — {SCORES[0]} очков
             </div>
           </div>
         </div>
@@ -476,18 +648,25 @@ export default function App() {
     );
   }
 
+  const attemptsLeft = MAX_ATTEMPTS - current;
+  const pct = Math.min(100, (elapsed / currentDur) * 100);
+
   return (
     <>
-      <SaltBackground boost={boost} />
+      <ParticleBackground boost={boost} symbol={bgSymbol} />
 
       <div className="app">
         <div className="inner">
           <header className="header">
-            <h1>🎵 Угадай трек</h1>
-            <div className="subtitle">TRIPPL FLOW · TF · LPUNK</div>
+            <h1>🎵 {modeData.name}</h1>
+            <div className="subtitle">{modeData.subtitle}</div>
           </header>
 
           <div className="board">
+            <button className="btn ghost back-btn" onClick={backToLobby}>
+              ← Сменить артиста
+            </button>
+
             <div className="stats">
               <div className="stat">
                 <span className="stat-label">Трек</span>
@@ -499,7 +678,7 @@ export default function App() {
                 <span className="stat-label">Счёт</span>
                 <span className="stat-value">
                   {totalScore}
-                  <span className="stat-max"> / {MAX_SCORE}</span>
+                  <span className="stat-max"> / {maxScore}</span>
                 </span>
               </div>
               <div className="stat">

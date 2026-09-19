@@ -811,6 +811,157 @@ body::before {
   .main-input { font-size: 16px; padding: 0 12px; }
   .btn.submit { padding: 0 14px; font-size: 13px; }
 }
+/* ============= Лобби с артистами ============= */
+
+.lobby {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.mode-card {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  background: rgba(14, 14, 24, 0.65);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  padding: 0;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  font-family: inherit;
+  color: #fff;
+  text-align: left;
+}
+
+.mode-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 22px;
+  padding: 1px;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--accent) 60%, transparent),
+    transparent 60%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+.mode-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 0 60px color-mix(in srgb, var(--accent) 30%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.mode-card:hover::before {
+  opacity: 1;
+}
+
+.mode-card:hover .mode-cover img {
+  transform: scale(1.06);
+}
+
+.mode-card:hover .mode-cover-glow {
+  opacity: 1;
+}
+
+.mode-cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1a1a24;
+}
+
+.mode-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.mode-cover-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    color-mix(in srgb, var(--accent) 25%, transparent) 100%
+  );
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.mode-info {
+  padding: 18px 20px 12px;
+}
+
+.mode-name {
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.mode-subtitle {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8b8ba8;
+  margin-bottom: 10px;
+}
+
+.mode-count {
+  font-size: 14px;
+  color: #d0d0e0;
+  font-weight: 600;
+}
+
+.mode-play {
+  padding: 14px 20px 18px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+  transition: color 0.2s ease;
+}
+
+.mode-card:hover .mode-play {
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .lobby {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .mode-info { padding: 14px 16px 10px; }
+  .mode-play { padding: 12px 16px 16px; font-size: 14px; }
+  .mode-name { font-size: 18px; }
+}
+
+/* ============= Кнопка «назад» в шапке борда ============= */
+
+.back-btn {
+  margin-bottom: 16px;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 10px;
+  align-self: flex-start;
+}
 
 @media (prefers-reduced-motion: reduce) {
   .header h1,
