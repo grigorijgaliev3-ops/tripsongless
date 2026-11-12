@@ -963,9 +963,210 @@ body::before {
   align-self: flex-start;
 }
 
+/* ============= Визуальный полиш ============= */
+
+.inner {
+  max-width: 1120px;
+}
+
+.board {
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Медленно дышащее северное сияние на фоне */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(45% 45% at 25% 30%, rgba(124, 92, 255, 0.16), transparent 70%),
+    radial-gradient(40% 40% at 78% 68%, rgba(34, 211, 238, 0.12), transparent 70%),
+    radial-gradient(35% 35% at 60% 20%, rgba(244, 114, 182, 0.1), transparent 70%);
+  filter: blur(40px);
+  animation: aurora 18s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1); }
+  50%  { transform: translate3d(2%, 3%, 0) scale(1.06); }
+  100% { transform: translate3d(-1%, 2%, 0) scale(1.02); }
+}
+
+/* Три карточки в ряд */
+.lobby {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+
+.mode-card {
+  animation: cardIn 0.65s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+  will-change: transform;
+}
+
+.mode-card:nth-child(2) { animation-delay: 0.09s; }
+.mode-card:nth-child(3) { animation-delay: 0.18s; }
+.mode-card:nth-child(4) { animation-delay: 0.27s; }
+.mode-card:nth-child(5) { animation-delay: 0.36s; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Эмодзи-бейдж артиста */
+.mode-card::after {
+  content: attr(data-symbol);
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  border-radius: 14px;
+  background: rgba(8, 8, 16, 0.55);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 24px color-mix(in srgb, var(--accent) 30%, transparent);
+  backdrop-filter: blur(10px);
+  z-index: 3;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.mode-card:hover::after {
+  transform: translateY(-2px) scale(1.08) rotate(-6deg);
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.4),
+    0 0 34px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+
+/* Затемнение и акцентная подсветка обложки */
+.mode-cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--accent) 18%, transparent), transparent 45%),
+    linear-gradient(180deg, transparent 55%, rgba(5, 5, 10, 0.55) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Блик, пробегающий по фото при наведении */
+.mode-cover::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -80%;
+  width: 60%;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  transform: rotate(18deg);
+  transition: left 0.7s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.mode-card:hover .mode-cover::after {
+  left: 120%;
+}
+
+.mode-cover img {
+  filter: saturate(1.05) contrast(1.03);
+  transition: transform 0.5s cubic-bezier(0.16, 0.84, 0.44, 1), filter 0.5s ease;
+}
+
+.mode-card:hover .mode-cover img {
+  transform: scale(1.08);
+  filter: saturate(1.15) contrast(1.06);
+}
+
+/* Градиентное имя артиста */
+.mode-name {
+  background: linear-gradient(90deg, #fff, color-mix(in srgb, var(--accent) 70%, #fff));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Счётчик треков в виде «живой» пилюли */
+.mode-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+  color: color-mix(in srgb, var(--accent) 60%, #fff);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.mode-count::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+  animation: countPulse 2s ease-in-out infinite;
+}
+
+@keyframes countPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.8); }
+}
+
+/* Стрелка у кнопки «Играть» */
+.mode-play {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.mode-play::after {
+  content: "→";
+  font-size: 18px;
+  transition: transform 0.25s ease;
+}
+
+.mode-card:hover .mode-play::after {
+  transform: translateX(6px);
+}
+
+@media (max-width: 1000px) {
+  .lobby {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .lobby {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .mode-card::after {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .header h1,
-  .progress-fill.playing {
+  .progress-fill.playing,
+  body::after,
+  .mode-card,
+  .mode-count::before {
     animation: none;
   }
 }

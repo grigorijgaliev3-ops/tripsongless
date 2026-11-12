@@ -227,7 +227,7 @@ const MODES = {
     name: "BYCHESS",
     cover: "/covers/bychess.jpg",
     accent: "#38bdf8",
-    symbol: "♟️",
+    symbol: "🐂",
     tracks: BYCHESS_TRACKS,
   },
 };
@@ -387,6 +387,7 @@ function Lobby({ onPick }) {
               <button
                 key={key}
                 className="mode-card"
+                data-symbol={m.symbol}
                 style={{ "--accent": m.accent }}
                 onClick={() => onPick(key)}
               >
@@ -401,7 +402,7 @@ function Lobby({ onPick }) {
                     {m.tracks.length} {pluralTracks(m.tracks.length)}
                   </div>
                 </div>
-                <div className="mode-play">▶ Играть</div>
+                <div className="mode-play">Играть</div>
               </button>
             );
           })}
