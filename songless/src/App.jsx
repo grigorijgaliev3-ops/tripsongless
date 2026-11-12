@@ -151,58 +151,54 @@ const BYCHESS_TRACKS = [
   { file: "bychess/1. Bychess, Георгий Пушка - Зюганов.mp3", answer: "Зюганов" },
   { file: "bychess/2. bychess, Георгий Пушка - птичка40.mp3", answer: "птичка40" },
   { file: "bychess/3. alonilon,ivan rist, bychess, Георгий Пушка - песня про проц.mp3", answer: "песня про проц" },
-  { file: "bychess/5. bychess, Георгий Пушка - отлил в кусты.mp3", answer: "отлил в кусты" },
-  { file: "bychess/6. bychess, Георгий Пушка - плавильня.mp3", answer: "плавильня" },
-  { file: "bychess/7. bychess, Георгий Пушка - фонк дуо.mp3", answer: "фонк дуо" },
-  { file: "bychess/8. bychess, Георгий Пушка - дно.mp3", answer: "дно" },
-  { file: "bychess/9. bychess, Георгий Пушка - последняя ночь.mp3", answer: "последняя ночь" },
-  { file: "bychess/10. bychess, Георгий Пушка - ДНО NEW YEAR.mp3", answer: "ДНО NEW YEAR" },
-  { file: "bychess/11. bychess, Георгий Пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
-  { file: "bychess/12. Кирилл Граната, Георгий Пушка, bychess - 3 программиста.mp3", answer: "3 программиста" },
-  { file: "bychess/13. alonilon, bychess, Георгий Пушка - в прайме(север 2).mp3", answer: "в прайме(север 2)" },
-  { file: "bychess/14. TF, BYCHESS, MARKPULYA, ALONILON - САЙФЕР АФТЕРПАТИ.mp3", answer: "САЙФЕР АФТЕРПАТИ" },
-  { file: "bychess/15. TF, bychess, alonilon - NEW LOVE.mp3", answer: "NEW LOVE" },
-  { file: "bychess/16. bychess, георгий пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
-  { file: "bychess/17. bychess - дача.mp3", answer: "дача" },
-  { file: "bychess/18. bychess, марк пуля - оушенкор.mp3", answer: "оушенкор" },
-  { file: "bychess/19. bychess, георгий пушка - пачка последняя.mp3", answer: "пачка последняя" },
-  { file: "bychess/20. bychess, георгий пушка, alonilon - подумать.mp3", answer: "подумать" },
-  { file: "bychess/21. bychess, георгий пушка - 3am sidney.mp3", answer: "3am sidney" },
-  { file: "bychess/22. bychess - 5525252552525.mp3", answer: "5525252552525" },
-  { file: "bychess/23. bychess, георгий пушка - артист эстрады Р.У.mp3", answer: "артист эстрады Р.У" },
-  { file: "bychess/24. bychess, alonilon - двойник.mp3", answer: "двойник" },
-  { file: "bychess/25. bychess - деснасидо.mp3", answer: "деснасидо" },
-  { file: "bychess/26. bychess, alonilon, георгий пушка - дизайнерская.mp3", answer: "дизайнерская" },
-  { file: "bychess/27. bychess, георгий пушка - занозин.mp3", answer: "занозин" },
-  { file: "bychess/28. bychess, alonilon - зачем ты схавал speed up.mp3", answer: "зачем ты схавал speed up" },
-  { file: "bychess/29. bychess, марк пуля - клубкор(ЧАС НОЧИ В МОСКВЕ).mp3", answer: "клубкор(ЧАС НОЧИ В МОСКВЕ)" },
-  { file: "bychess/30. bychess, alonilon - колян карелия(доказал).mp3", answer: "колян карелия(доказал)" },
-  { file: "bychess/31. bychess - кресты.mp3", answer: "кресты" },
-  { file: "bychess/32. bychess - ЛЕРМОНТОВ.mp3", answer: "ЛЕРМОНТОВ" },
-  { file: "bychess/33. bychess, alonilon - лох подсолнух.mp3", answer: "лох подсолнух" },
-  { file: "bychess/34. bychess - майсизн дэмо.mp3", answer: "майсизн дэмо" },
-  { file: "bychess/35. bychess, георгий пушка - не нужна.mp3", answer: "не нужна" },
-  { file: "bychess/36. bychess, alonilon, 7ugly, георгий пушка - нью джазик сайфер.mp3", answer: "нью джазик сайфер" },
-  { file: "bychess/37. bychess, рист, alonilon - обсуждают.mp3", answer: "обсуждают" },
-  { file: "bychess/38. bychess, alonilon - одно.mp3", answer: "одно" },
-  { file: "bychess/39. bychess - осилил 255.mp3", answer: "осилил 255" },
-  { file: "bychess/40. bychess, георгий пушка - перк перк.mp3", answer: "перк перк" },
-  { file: "bychess/41. bychess - поп панк.mp3", answer: "поп панк" },
-  { file: "bychess/42. bychess, георгий пушка - последняя ночь.mp3", answer: "последняя ночь" },
-  { file: "bychess/43. bychess, рсит, джо, георгий пушка, alonilon - сайфер легенд.mp3", answer: "сайфер легенд" },
-  { file: "bychess/44. bychess, 7ugly - соврал.mp3", answer: "соврал" },
-  { file: "bychess/45. bychess, 7ugly - тайлер39.mp3", answer: "тайлер39" },
-  { file: "bychess/46. bychess - техника.mp3", answer: "техника" },
-  { file: "bychess/47. bychess - фит с глоумикс.mp3", answer: "фит с глоумикс" },
-  { file: "bychess/48. bychess, alonilon - цель-капитал.mp3", answer: "цель-капитал" },
-  { file: "bychess/49. bychess, шмарат, alonilon - эбола 2.mp3", answer: "эбола 2" },
-  { file: "bychess/50. bychess, георгий пушка - Baggy jeans.mp3", answer: "Baggy jeans" },
-  { file: "bychess/51. bychess - bychess the killer.mp3", answer: "bychess the killer" },
-  { file: "bychess/52. bychess, alonilon - fikali.mp3", answer: "fikali" },
-  { file: "bychess/53. bychess, георгий пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
-  { file: "bychess/54. bychess, 3pl, alonilon - NEW LOVE.mp3", answer: "NEW LOVE" },
-  { file: "bychess/55. bychess, alonilon, георгий пушка, марк пуля - no cap intro.mp3", answer: "no cap intro" },
-  { file: "bychess/56. bychess, kamen - YAGODA MASTER.mp3", answer: "YAGODA MASTER" },
+  { file: "bychess/4. bychess, Георгий Пушка - отлил в кусты.mp3", answer: "отлил в кусты" },
+  { file: "bychess/5. bychess, Георгий Пушка - плавильня.mp3", answer: "плавильня" },
+  { file: "bychess/6. bychess, Георгий Пушка - фонк дуо.mp3", answer: "фонк дуо" },
+  { file: "bychess/7. bychess, Георгий Пушка - дно.mp3", answer: "дно" },
+  { file: "bychess/8. bychess, Георгий Пушка - ДНО NEW YEAR.mp3", answer: "ДНО NEW YEAR" },
+  { file: "bychess/9. Кирилл Граната, Георгий Пушка, bychess - 3 программиста.mp3", answer: "3 программиста" },
+  { file: "bychess/10. alonilon, bychess, Георгий Пушка - в прайме(север 2).mp3", answer: "в прайме(север 2)" },
+  { file: "bychess/11. TF, BYCHESS, MARKPULYA, ALONILON - САЙФЕР АФТЕРПАТИ.mp3", answer: "САЙФЕР АФТЕРПАТИ" },
+  { file: "bychess/12. bychess, георгий пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
+  { file: "bychess/13. bychess - дача.mp3", answer: "дача" },
+  { file: "bychess/14. bychess, марк пуля - оушенкор.mp3", answer: "оушенкор" },
+  { file: "bychess/15. bychess, георгий пушка - пачка последняя.mp3", answer: "пачка последняя" },
+  { file: "bychess/16. bychess, георгий пушка, alonilon - подумать.mp3", answer: "подумать" },
+  { file: "bychess/17. bychess, георгий пушка - 3am sidney.mp3", answer: "3am sidney" },
+  { file: "bychess/18. bychess - 5525252552525.mp3", answer: "5525252552525" },
+  { file: "bychess/19. bychess, георгий пушка - артист эстрады Р.У.mp3", answer: "артист эстрады Р.У" },
+  { file: "bychess/20. bychess, alonilon - двойник.mp3", answer: "двойник" },
+  { file: "bychess/21. bychess - деснасидо.mp3", answer: "деснасидо" },
+  { file: "bychess/22. bychess, alonilon, георгий пушка - дизайнерская.mp3", answer: "дизайнерская" },
+  { file: "bychess/23. bychess, георгий пушка - занозин.mp3", answer: "занозин" },
+  { file: "bychess/24. bychess, alonilon - зачем ты схавал speed up.mp3", answer: "зачем ты схавал speed up" },
+  { file: "bychess/25. bychess, марк пуля - клубкор(ЧАС НОЧИ В МОСКВЕ).mp3", answer: "клубкор(ЧАС НОЧИ В МОСКВЕ)" },
+  { file: "bychess/26. bychess, alonilon - колян карелия(доказал).mp3", answer: "колян карелия(доказал)" },
+  { file: "bychess/27. bychess - кресты.mp3", answer: "кресты" },
+  { file: "bychess/28. bychess - ЛЕРМОНТОВ.mp3", answer: "ЛЕРМОНТОВ" },
+  { file: "bychess/29. bychess, alonilon - лох подсолнух.mp3", answer: "лох подсолнух" },
+  { file: "bychess/30. bychess - майсизн дэмо.mp3", answer: "майсизн дэмо" },
+  { file: "bychess/31. bychess, георгий пушка - не нужна.mp3", answer: "не нужна" },
+  { file: "bychess/32. bychess, alonilon, 7ugly, георгий пушка - нью джазик сайфер.mp3", answer: "нью джазик сайфер" },
+  { file: "bychess/33. bychess, рист, alonilon - обсуждают.mp3", answer: "обсуждают" },
+  { file: "bychess/34. bychess, alonilon - одно.mp3", answer: "одно" },
+  { file: "bychess/35. bychess - осилил 255.mp3", answer: "осилил 255" },
+  { file: "bychess/36. bychess, георгий пушка - перк перк.mp3", answer: "перк перк" },
+  { file: "bychess/37. bychess - поп панк.mp3", answer: "поп панк" },
+  { file: "bychess/38. bychess, георгий пушка - последняя ночь.mp3", answer: "последняя ночь" },
+  { file: "bychess/39. bychess, рсит, джо, георгий пушка, alonilon - сайфер легенд.mp3", answer: "сайфер легенд" },
+  { file: "bychess/40. bychess, 7ugly - соврал.mp3", answer: "соврал" },
+  { file: "bychess/41. bychess, 7ugly - тайлер39.mp3", answer: "тайлер39" },
+  { file: "bychess/42. bychess - техника.mp3", answer: "техника" },
+  { file: "bychess/43. bychess - фит с глоумикс.mp3", answer: "фит с глоумикс" },
+  { file: "bychess/44. bychess, alonilon - цель-капитал.mp3", answer: "цель-капитал" },
+  { file: "bychess/45. bychess, шмарат, alonilon - эбола 2.mp3", answer: "эбола 2" },
+  { file: "bychess/46. bychess, георгий пушка - Baggy jeans.mp3", answer: "Baggy jeans" },
+  { file: "bychess/47. bychess - bychess the killer.mp3", answer: "bychess the killer" },
+  { file: "bychess/48. bychess, alonilon - fikali.mp3", answer: "fikali" },
+  { file: "bychess/49. bychess, 3pl, alonilon - NEW LOVE.mp3", answer: "NEW LOVE" },
+  { file: "bychess/50. bychess, alonilon, георгий пушка, марк пуля - no cap intro.mp3", answer: "no cap intro" },
+  { file: "bychess/51. bychess, kamen - YAGODA MASTER.mp3", answer: "YAGODA MASTER" },
 ];
 
 const MODES = {
@@ -269,7 +265,7 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
     symbolRef.current = symbol;
     const width = window.innerWidth;
     const height = window.innerHeight;
-    const count = particlesRef.current.length || 20;
+    const count = Math.min(16, particlesRef.current.length || 12);
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -290,7 +286,8 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
     let height = 0;
 
     const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
+      // Ограничиваем плотность пикселей — на 4K/Retina это главный источник лагов
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width * dpr;
@@ -302,7 +299,7 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
     resize();
     window.addEventListener("resize", resize);
 
-    const count = Math.min(28, Math.max(10, Math.floor((width * height) / 90000)));
+    const count = Math.min(16, Math.max(8, Math.floor((width * height) / 150000)));
 
     particlesRef.current = Array.from({ length: count }, () => ({
       x: Math.random() * width,
@@ -317,18 +314,27 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
     }));
 
     let last = performance.now();
+    let acc = 0;
 
     const tick = (now) => {
-      const dt = Math.min(50, now - last) / 16.67;
-      last = now;
+      rafRef.current = requestAnimationFrame(tick);
+      if (document.hidden) return;
 
-      boostRef.current += (boost - boostRef.current) * 0.04;
+      // Держим ~30 fps вместо 60 — визуально незаметно, нагрузка вдвое меньше
+      acc += now - last;
+      last = now;
+      if (acc < 32) return;
+      const dt = Math.min(50, acc) / 16.67;
+      acc = 0;
+
+      boostRef.current += (boost - boostRef.current) * 0.06;
       const b = boostRef.current;
       const speedMult = 1 + b * 8;
       const scaleMult = 1 + b * 0.4;
 
       ctx.clearRect(0, 0, width, height);
       const currentSymbol = symbolRef.current;
+      const glow = b > 0.1;
 
       for (const p of particlesRef.current) {
         p.x += p.vx * dt * speedMult;
@@ -351,13 +357,12 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
         ctx.globalAlpha = p.alpha * (1 + b * 0.9);
-        ctx.shadowBlur = 20 * (1 + b * 2);
+        // Свечение только в момент победы — постоянные тени дорого стоят
+        ctx.shadowBlur = glow ? 20 * (1 + b * 2) : 0;
         ctx.shadowColor = "rgba(167, 139, 250, 0.9)";
         ctx.fillText(currentSymbol, 0, 0);
         ctx.restore();
       }
-
-      rafRef.current = requestAnimationFrame(tick);
     };
     rafRef.current = requestAnimationFrame(tick);
 
@@ -392,7 +397,7 @@ function Lobby({ onPick }) {
                 onClick={() => onPick(key)}
               >
                 <div className="mode-cover">
-                  <img src={m.cover} alt={m.name} />
+                  <img src={m.cover} alt={m.name} loading="lazy" decoding="async" />
                   <div className="mode-cover-glow" />
                 </div>
                 <div className="mode-info">

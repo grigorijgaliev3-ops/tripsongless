@@ -86,7 +86,7 @@ body::before {
   background-clip: text;
   color: transparent;
   animation: shimmerText 4s linear infinite;
-  filter: drop-shadow(0 0 40px rgba(124, 92, 255, 0.4));
+  filter: drop-shadow(0 0 22px rgba(124, 92, 255, 0.35));
 }
 
 @keyframes shimmerText {
@@ -1169,4 +1169,54 @@ body::after {
   .mode-count::before {
     animation: none;
   }
+}
+
+/* ============= Курсор-нота ============= */
+
+html,
+body {
+  cursor: url("/cursor.png") 9 24, auto;
+}
+
+button,
+a,
+.btn,
+.mode-card,
+.item,
+.dropdown {
+  cursor: url("/cursor.png") 9 24, pointer;
+}
+
+input,
+textarea,
+.main-input {
+  cursor: text;
+}
+
+/* ============= Облегчаем эффекты на слабых устройствах ============= */
+
+.board {
+  backdrop-filter: blur(12px) saturate(120%);
+  -webkit-backdrop-filter: blur(12px) saturate(120%);
+}
+
+.mode-card {
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+body::after {
+  inset: -10%;
+  filter: blur(26px);
+  will-change: transform;
+}
+
+.mode-card::after {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+img {
+  user-select: none;
+  -webkit-user-drag: none;
 }
