@@ -147,6 +147,64 @@ const TRIPPL_TRACKS = [
   { file: "trippl/69. TF, bychess, alonilon - NEW LOVE.mp3",     answer: "NEW LOVE" },
 ];
 
+const BYCHESS_TRACKS = [
+  { file: "bychess/1. Bychess, Георгий Пушка - Зюганов.mp3", answer: "Зюганов" },
+  { file: "bychess/2. bychess, Георгий Пушка - птичка40.mp3", answer: "птичка40" },
+  { file: "bychess/3. alonilon,ivan rist, bychess, Георгий Пушка - песня про проц.mp3", answer: "песня про проц" },
+  { file: "bychess/5. bychess, Георгий Пушка - отлил в кусты.mp3", answer: "отлил в кусты" },
+  { file: "bychess/6. bychess, Георгий Пушка - плавильня.mp3", answer: "плавильня" },
+  { file: "bychess/7. bychess, Георгий Пушка - фонк дуо.mp3", answer: "фонк дуо" },
+  { file: "bychess/8. bychess, Георгий Пушка - дно.mp3", answer: "дно" },
+  { file: "bychess/9. bychess, Георгий Пушка - последняя ночь.mp3", answer: "последняя ночь" },
+  { file: "bychess/10. bychess, Георгий Пушка - ДНО NEW YEAR.mp3", answer: "ДНО NEW YEAR" },
+  { file: "bychess/11. bychess, Георгий Пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
+  { file: "bychess/12. Кирилл Граната, Георгий Пушка, bychess - 3 программиста.mp3", answer: "3 программиста" },
+  { file: "bychess/13. alonilon, bychess, Георгий Пушка - в прайме(север 2).mp3", answer: "в прайме(север 2)" },
+  { file: "bychess/14. TF, BYCHESS, MARKPULYA, ALONILON - САЙФЕР АФТЕРПАТИ.mp3", answer: "САЙФЕР АФТЕРПАТИ" },
+  { file: "bychess/15. TF, bychess, alonilon - NEW LOVE.mp3", answer: "NEW LOVE" },
+  { file: "bychess/16. bychess, георгий пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
+  { file: "bychess/17. bychess - дача.mp3", answer: "дача" },
+  { file: "bychess/18. bychess, марк пуля - оушенкор.mp3", answer: "оушенкор" },
+  { file: "bychess/19. bychess, георгий пушка - пачка последняя.mp3", answer: "пачка последняя" },
+  { file: "bychess/20. bychess, георгий пушка, alonilon - подумать.mp3", answer: "подумать" },
+  { file: "bychess/21. bychess, георгий пушка - 3am sidney.mp3", answer: "3am sidney" },
+  { file: "bychess/22. bychess - 5525252552525.mp3", answer: "5525252552525" },
+  { file: "bychess/23. bychess, георгий пушка - артист эстрады Р.У.mp3", answer: "артист эстрады Р.У" },
+  { file: "bychess/24. bychess, alonilon - двойник.mp3", answer: "двойник" },
+  { file: "bychess/25. bychess - деснасидо.mp3", answer: "деснасидо" },
+  { file: "bychess/26. bychess, alonilon, георгий пушка - дизайнерская.mp3", answer: "дизайнерская" },
+  { file: "bychess/27. bychess, георгий пушка - занозин.mp3", answer: "занозин" },
+  { file: "bychess/28. bychess, alonilon - зачем ты схавал speed up.mp3", answer: "зачем ты схавал speed up" },
+  { file: "bychess/29. bychess, марк пуля - клубкор(ЧАС НОЧИ В МОСКВЕ).mp3", answer: "клубкор(ЧАС НОЧИ В МОСКВЕ)" },
+  { file: "bychess/30. bychess, alonilon - колян карелия(доказал).mp3", answer: "колян карелия(доказал)" },
+  { file: "bychess/31. bychess - кресты.mp3", answer: "кресты" },
+  { file: "bychess/32. bychess - ЛЕРМОНТОВ.mp3", answer: "ЛЕРМОНТОВ" },
+  { file: "bychess/33. bychess, alonilon - лох подсолнух.mp3", answer: "лох подсолнух" },
+  { file: "bychess/34. bychess - майсизн дэмо.mp3", answer: "майсизн дэмо" },
+  { file: "bychess/35. bychess, георгий пушка - не нужна.mp3", answer: "не нужна" },
+  { file: "bychess/36. bychess, alonilon, 7ugly, георгий пушка - нью джазик сайфер.mp3", answer: "нью джазик сайфер" },
+  { file: "bychess/37. bychess, рист, alonilon - обсуждают.mp3", answer: "обсуждают" },
+  { file: "bychess/38. bychess, alonilon - одно.mp3", answer: "одно" },
+  { file: "bychess/39. bychess - осилил 255.mp3", answer: "осилил 255" },
+  { file: "bychess/40. bychess, георгий пушка - перк перк.mp3", answer: "перк перк" },
+  { file: "bychess/41. bychess - поп панк.mp3", answer: "поп панк" },
+  { file: "bychess/42. bychess, георгий пушка - последняя ночь.mp3", answer: "последняя ночь" },
+  { file: "bychess/43. bychess, рсит, джо, георгий пушка, alonilon - сайфер легенд.mp3", answer: "сайфер легенд" },
+  { file: "bychess/44. bychess, 7ugly - соврал.mp3", answer: "соврал" },
+  { file: "bychess/45. bychess, 7ugly - тайлер39.mp3", answer: "тайлер39" },
+  { file: "bychess/46. bychess - техника.mp3", answer: "техника" },
+  { file: "bychess/47. bychess - фит с глоумикс.mp3", answer: "фит с глоумикс" },
+  { file: "bychess/48. bychess, alonilon - цель-капитал.mp3", answer: "цель-капитал" },
+  { file: "bychess/49. bychess, шмарат, alonilon - эбола 2.mp3", answer: "эбола 2" },
+  { file: "bychess/50. bychess, георгий пушка - Baggy jeans.mp3", answer: "Baggy jeans" },
+  { file: "bychess/51. bychess - bychess the killer.mp3", answer: "bychess the killer" },
+  { file: "bychess/52. bychess, alonilon - fikali.mp3", answer: "fikali" },
+  { file: "bychess/53. bychess, георгий пушка - HRANITEL'.mp3", answer: "HRANITEL'" },
+  { file: "bychess/54. bychess, 3pl, alonilon - NEW LOVE.mp3", answer: "NEW LOVE" },
+  { file: "bychess/55. bychess, alonilon, георгий пушка, марк пуля - no cap intro.mp3", answer: "no cap intro" },
+  { file: "bychess/56. bychess, kamen - YAGODA MASTER.mp3", answer: "YAGODA MASTER" },
+];
+
 const MODES = {
   pushka: {
     id: "pushka",
@@ -164,9 +222,17 @@ const MODES = {
     symbol: "🧂",
     tracks: TRIPPL_TRACKS,
   },
+  bychess: {
+    id: "bychess",
+    name: "BYCHESS",
+    cover: "/covers/bychess.jpg",
+    accent: "#38bdf8",
+    symbol: "♟️",
+    tracks: BYCHESS_TRACKS,
+  },
 };
 
-const MODE_ORDER = ["pushka", "trippl"];
+const MODE_ORDER = ["pushka", "trippl", "bychess"];
 
 const DURATIONS = [0.5, 1, 2, 4, 8, 16];
 const MAX_ATTEMPTS = 6;
