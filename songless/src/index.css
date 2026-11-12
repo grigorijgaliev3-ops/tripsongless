@@ -966,7 +966,7 @@ body::before {
 /* ============= Визуальный полиш ============= */
 
 .inner {
-  max-width: 1120px;
+  max-width: 1200px;
 }
 
 .board {
@@ -996,10 +996,10 @@ body::after {
   100% { transform: translate3d(-1%, 2%, 0) scale(1.02); }
 }
 
-/* Три карточки в ряд */
+/* Четыре карточки в ряд на десктопе */
 .lobby {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
   align-items: stretch;
 }
 
@@ -1237,12 +1237,6 @@ img {
 }
 
 /* ============= Режим «Микс» ============= */
-
-@media (min-width: 1001px) {
-  .lobby > .mode-card:last-child:nth-child(3n + 1) {
-    grid-column: 2;
-  }
-}
 
 .mix-overlay {
   position: fixed;
