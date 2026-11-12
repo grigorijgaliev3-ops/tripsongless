@@ -1235,3 +1235,231 @@ img {
   user-select: none;
   -webkit-user-drag: none;
 }
+
+/* ============= Режим «Микс» ============= */
+
+@media (min-width: 1001px) {
+  .lobby > .mode-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}
+
+.mix-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(4, 4, 10, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: mixFade 0.2s ease both;
+}
+
+@keyframes mixFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.mix-modal {
+  position: relative;
+  width: min(460px, 100%);
+  border-radius: 26px;
+  padding: 30px 30px 26px;
+  background: linear-gradient(180deg, rgba(22, 22, 38, 0.98), rgba(12, 12, 22, 0.98));
+  border: 1px solid rgba(245, 158, 11, 0.26);
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.65),
+    0 0 80px rgba(245, 158, 11, 0.1) inset;
+  text-align: center;
+  animation: mixPop 0.25s cubic-bezier(0.16, 0.84, 0.44, 1) both;
+}
+
+@keyframes mixPop {
+  from { transform: translateY(16px) scale(0.96); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.mix-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #b9b9cf;
+  font-size: 22px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.mix-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: rotate(90deg);
+}
+
+.mix-badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+  border-radius: 20px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.25);
+}
+
+.mix-title {
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: linear-gradient(90deg, #fff, #f59e0b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mix-sub {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #8b8ba8;
+  letter-spacing: 0.06em;
+}
+
+.mix-count {
+  margin: 20px 0 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+}
+
+.mix-count b {
+  font-size: 54px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(245, 158, 11, 0.35);
+}
+
+.mix-count span {
+  font-size: 14px;
+  color: #8b8ba8;
+}
+
+.mix-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    #f59e0b var(--fill, 50%),
+    rgba(255, 255, 255, 0.12) var(--fill, 50%)
+  );
+  outline: none;
+  cursor: url("/cursor-pointer.png") 20 16, pointer;
+}
+
+.mix-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #f59e0b;
+  box-shadow:
+    0 0 0 5px rgba(245, 158, 11, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.5);
+  cursor: url("/cursor-pointer.png") 20 16, pointer;
+  transition: transform 0.15s ease;
+}
+
+.mix-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+.mix-range::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.mix-range::-moz-range-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: #f59e0b;
+}
+
+.mix-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #f59e0b;
+  box-shadow: 0 0 0 5px rgba(245, 158, 11, 0.2);
+  cursor: url("/cursor-pointer.png") 20 16, pointer;
+}
+
+.mix-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 18px 0 24px;
+}
+
+.mix-chip {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: #cfcfe2;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: inherit;
+  transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease,
+    transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.mix-chip:hover {
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.mix-chip.active {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: #f59e0b;
+  color: #ffd48a;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.25);
+}
+
+.mix-start {
+  width: 100%;
+}
+
+@media (max-width: 640px) {
+  .mix-modal {
+    padding: 24px 20px 20px;
+  }
+  .mix-count b {
+    font-size: 46px;
+  }
+  .mix-badge {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+  }
+}

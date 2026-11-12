@@ -200,6 +200,8 @@ const BYCHESS_TRACKS = [
   { file: "bychess/51. bychess, kamen - YAGODA MASTER.mp3", answer: "YAGODA MASTER" },
 ];
 
+const ALL_TRACKS = [...PUSHKA_TRACKS, ...TRIPPL_TRACKS, ...BYCHESS_TRACKS];
+
 const MODES = {
   pushka: {
     id: "pushka",
@@ -225,9 +227,17 @@ const MODES = {
     symbol: "🐂",
     tracks: BYCHESS_TRACKS,
   },
+  mix: {
+    id: "mix",
+    name: "МИКС",
+    cover: "/covers/mix.svg",
+    accent: "#f59e0b",
+    symbol: "🔀",
+    tracks: ALL_TRACKS,
+  },
 };
 
-const MODE_ORDER = ["pushka", "trippl", "bychess"];
+const MODE_ORDER = ["pushka", "trippl", "bychess", "mix"];
 
 const DURATIONS = [0.5, 1, 2, 4, 8, 16];
 const MAX_ATTEMPTS = 6;
@@ -374,8 +384,90 @@ function ParticleBackground({ boost, symbol = "🧂" }) {
   return <canvas ref={canvasRef} className="bg-canvas" />;
 }
 
+/* ============= Модалка режима «Микс» ============= */
+function MixModal({ max, onClose, onStart }) {
+  const [count, setCount] = useState(Math.min(20, max));
+
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "Enter") onStart(count);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [count, onClose, onStart]);
+
+  const pct = max > 1 ? ((count - 1) / (max - 1)) * 100 : 100;
+  const quick = [5, 15, 30, 50, 100].filter((n) => n < max);
+
+  return (
+    <div className="mix-overlay" onClick={onClose}>
+      <div
+        className="mix-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Настройка режима микс"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button className="mix-close" onClick={onClose} aria-label="Закрыть">
+          ×
+        </button>
+
+        <div className="mix-badge">🔀</div>
+        <div className="mix-title">МИКС</div>
+        <div className="mix-sub">Сколько треков сыграем?</div>
+
+        <div className="mix-count">
+          <b>{count}</b>
+          <span>из {max}</span>
+        </div>
+
+        <input
+          className="mix-range"
+          type="range"
+          min={1}
+          max={max}
+          value={count}
+          style={{ "--fill": `${pct}%` }}
+          onChange={(e) => setCount(Number(e.target.value))}
+        />
+
+        <div className="mix-quick">
+          {quick.map((n) => (
+            <button
+              key={n}
+              className={"mix-chip" + (count === n ? " active" : "")}
+              onClick={() => setCount(n)}
+            >
+              {n}
+            </button>
+          ))}
+          <button
+            className={"mix-chip" + (count === max ? " active" : "")}
+            onClick={() => setCount(max)}
+          >
+            Все
+          </button>
+        </div>
+
+        <button className="btn primary mix-start" onClick={() => onStart(count)}>
+          ▶ Погнали
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /* ============= Лобби ============= */
 function Lobby({ onPick }) {
+  const [mixOpen, setMixOpen] = useState(false);
+  const mixMax = MODES.mix.tracks.length;
+
   return (
     <div className="app">
       <div className="inner">
@@ -393,7 +485,7 @@ function Lobby({ onPick }) {
                 className="mode-card"
                 data-symbol={m.symbol}
                 style={{ "--accent": m.accent }}
-                onClick={() => onPick(key)}
+                onClick={() => (key === "mix" ? setMixOpen(true) : onPick(key))}
               >
                 <div className="mode-cover">
                   <img src={m.cover} alt={m.name} loading="lazy" decoding="async" />
@@ -413,9 +505,21 @@ function Lobby({ onPick }) {
         </div>
 
         <div className="hint">
-          Выбери артиста и угадывай его треки по коротким отрывкам
+          Выбери артиста и угадывай его треки по коротким отрывкам. В миксе —
+          треки всех исполнителей вперемешку
         </div>
       </div>
+
+      {mixOpen && (
+        <MixModal
+          max={mixMax}
+          onClose={() => setMixOpen(false)}
+          onStart={(n) => {
+            setMixOpen(false);
+            onPick("mix", n);
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -462,7 +566,7 @@ export default function App() {
   const modeData = mode ? MODES[mode] : null;
   const track = modeData ? pool[poolIndex] : null;
   const tracksTotal = pool.length;
-  const maxScore = modeData ? modeData.tracks.length * SCORES[0] : 0;
+  const maxScore = pool.length * SCORES[0];
 
   const bgSymbol = modeData ? modeData.symbol : "🎵";
 
@@ -484,11 +588,15 @@ export default function App() {
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  const startMode = (key) => {
+  const startMode = (key, count) => {
     const m = MODES[key];
     if (!m) return;
+    const size =
+      key === "mix"
+        ? Math.max(1, Math.min(count ?? m.tracks.length, m.tracks.length))
+        : m.tracks.length;
     setMode(key);
-    setPool(shuffle(m.tracks));
+    setPool(shuffle(m.tracks).slice(0, size));
     setPoolIndex(0);
     setGuess("");
     setHistory([]);
@@ -705,7 +813,10 @@ export default function App() {
                 </div>
                 <div className="gameover-percent">{percent}%</div>
                 <div className="gameover-verdict">{verdict}</div>
-                <button className="btn primary new-btn" onClick={() => startMode(mode)}>
+                <button
+                  className="btn primary new-btn"
+                  onClick={() => startMode(mode, mode === "mix" ? pool.length : undefined)}
+                >
                   🔄 Играть заново
                 </button>
                 <button className="btn ghost new-btn" onClick={backToLobby}>
