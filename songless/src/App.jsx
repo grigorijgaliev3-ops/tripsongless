@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import "./App.css";
 
 const PUSHKA_TRACKS = [
   { file: "pushka/1. Марк Пуля, Георгий Пушка - СИГМА.mp3",                              answer: "СИГМА" },

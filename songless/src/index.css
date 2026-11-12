@@ -1173,24 +1173,39 @@ body::after {
 
 /* ============= Курсор-нота ============= */
 
+/* обычный курсор */
 html,
 body {
   cursor: url("/cursor.png") 9 24, auto;
 }
 
+/* кликабельные элементы */
 button,
 a,
 .btn,
 .mode-card,
 .item,
-.dropdown {
-  cursor: url("/cursor.png") 9 24, pointer;
+.dropdown,
+summary,
+[role="button"] {
+  cursor: url("/cursor-pointer.png") 20 16, pointer;
 }
 
+/* поля ввода */
 input,
 textarea,
-.main-input {
-  cursor: text;
+.main-input,
+[contenteditable="true"] {
+  cursor: url("/cursor-text.png") 16 15, text;
+}
+
+/* недоступные элементы */
+button:disabled,
+.btn:disabled,
+input:disabled,
+textarea:disabled,
+.main-input:disabled {
+  cursor: url("/cursor-disabled.png") 9 24, not-allowed;
 }
 
 /* ============= Облегчаем эффекты на слабых устройствах ============= */
