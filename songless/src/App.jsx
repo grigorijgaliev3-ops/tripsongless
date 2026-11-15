@@ -402,7 +402,6 @@ function Lobby({ onPick }) {
             </div>
             <div className="mode-info">
               <div className="mode-name">БИТВА АРТИСТОВ</div>
-              <div className="mode-subtitle">КТО ЛУЧШИЙ ИЗ ЛУЧШИХ</div>
               <div className="mode-count">{ARTISTS.length} артистов</div>
             </div>
             <div className="mode-play">Играть</div>

@@ -1,150 +1,51 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="42%" r="78%">
-      <stop offset="0%" stop-color="#2a1d52"/>
-      <stop offset="48%" stop-color="#141126"/>
-      <stop offset="100%" stop-color="#07070e"/>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a14"/>
+      <stop offset="1" stop-color="#141428"/>
+    </linearGradient>
+    <radialGradient id="g1" cx="0.18" cy="0.2" r="0.75">
+      <stop offset="0" stop-color="#8b5cff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#8b5cff" stop-opacity="0"/>
     </radialGradient>
-
-    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#475569"/>
-      <stop offset="18%" stop-color="#cbd5e1"/>
-      <stop offset="48%" stop-color="#ffffff"/>
-      <stop offset="72%" stop-color="#94a3b8"/>
-      <stop offset="100%" stop-color="#334155"/>
-    </linearGradient>
-
-    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#fff3c4"/>
-      <stop offset="38%" stop-color="#fbbf24"/>
-      <stop offset="72%" stop-color="#f59e0b"/>
-      <stop offset="100%" stop-color="#9a3412"/>
-    </linearGradient>
-
-    <linearGradient id="grip" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#3b0d1c"/>
-      <stop offset="50%" stop-color="#7f1d2e"/>
-      <stop offset="100%" stop-color="#2a0812"/>
-    </linearGradient>
-
+    <radialGradient id="g2" cx="0.85" cy="0.8" r="0.75">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
     <linearGradient id="vsFill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#fffbe8"/>
-      <stop offset="45%" stop-color="#fde68a"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.5" stop-color="#ffd48a"/>
+      <stop offset="1" stop-color="#f59e0b"/>
     </linearGradient>
-
-    <radialGradient id="purpleHaze" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#8b5cff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#8b5cff" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="cyanHaze" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.5"/>
-      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
-    </radialGradient>
-
-    <radialGradient id="vignette" cx="50%" cy="45%" r="64%">
-      <stop offset="52%" stop-color="#000000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.8"/>
-    </radialGradient>
-
-    <filter id="swordGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="20"/>
     </filter>
-
-    <filter id="vsGlow" x="-80%" y="-80%" width="260%" height="260%">
-      <feGaussianBlur stdDeviation="11" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <filter id="softSpark" x="-200%" y="-200%" width="500%" height="500%">
-      <feGaussianBlur stdDeviation="1.6" result="b"/>
-      <feMerge>
-        <feMergeNode in="b"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
-      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
-    </pattern>
-
-    <g id="sword">
-      <!-- клинок: длинный, с сужением к острию -->
-      <path d="M0,-235 L12,-196 L9,-28 L-9,-28 L-12,-196 Z"
-            fill="url(#blade)" stroke="#e2e8f0" stroke-width="1.1" stroke-linejoin="round"/>
-      <!-- дол -->
-      <path d="M0,-218 L0,-38" stroke="#64748b" stroke-width="2.2" opacity="0.65"/>
-      <!-- блик по лезвию -->
-      <path d="M-5,-205 L-4,-40" stroke="#ffffff" stroke-width="1.4" opacity="0.75"/>
-      <!-- гарда: тонкая, с лёгким изгибом -->
-      <path d="M-40,-27 Q-40,-35 -31,-35 L31,-35 Q40,-35 40,-27 L40,-21 Q40,-13 31,-13 L-31,-13 Q-40,-13 -40,-21 Z"
-            fill="url(#gold)" stroke="#fde68a" stroke-width="1"/>
-      <path d="M-34,-31 L34,-31" stroke="#fff7d6" stroke-width="1.6" opacity="0.6"/>
-      <!-- рукоять -->
-      <rect x="-8" y="-13" width="16" height="64" rx="7" fill="url(#grip)" stroke="#1f0710" stroke-width="1.6"/>
-      <g stroke="#f59e0b" stroke-width="2.6" stroke-linecap="round" opacity="0.85">
-        <line x1="-7" y1="0" x2="7" y2="6"/>
-        <line x1="-7" y1="13" x2="7" y2="19"/>
-        <line x1="-7" y1="26" x2="7" y2="32"/>
-        <line x1="-7" y1="39" x2="7" y2="45"/>
-      </g>
-      <!-- навершие -->
-      <circle cx="0" cy="62" r="12" fill="url(#gold)" stroke="#fde68a" stroke-width="1.2"/>
-      <circle cx="0" cy="62" r="4.5" fill="#7c2d12"/>
-    </g>
   </defs>
 
-  <!-- фон -->
-  <rect width="512" height="512" fill="url(#bg)"/>
-  <rect width="512" height="512" fill="url(#grid)"/>
-  <ellipse cx="120" cy="320" rx="200" ry="220" fill="url(#purpleHaze)"/>
-  <ellipse cx="398" cy="320" rx="200" ry="220" fill="url(#cyanHaze)"/>
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#g1)"/>
+  <rect width="600" height="600" fill="url(#g2)"/>
 
-  <!-- скрещённые мечи -->
-  <g filter="url(#swordGlow)">
-    <use href="#sword" transform="translate(140 400) rotate(40.6) scale(1.61)"/>
-    <use href="#sword" transform="translate(372 400) rotate(-40.6) scale(1.61)"/>
-  </g>
+  <!-- левый меч -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M184 434 L206 456 L450 190 Z" fill="#f59e0b"/>
+    <path d="M191 430 L444 187" stroke="#ffe2a8" stroke-width="4" opacity="0.5"/>
+    <path d="M158 408 L232 482" stroke="#f59e0b" stroke-width="20"/>
+    <path d="M195 445 L150 490" stroke="#b45309" stroke-width="22"/>
+    <circle cx="140" cy="500" r="13" fill="#f59e0b"/>
 
-  <!-- искры -->
-  <g fill="#fde68a" filter="url(#softSpark)">
-    <circle cx="226" cy="154" r="2.2"/>
-    <circle cx="290" cy="142" r="1.8"/>
-    <circle cx="310" cy="178" r="2.4"/>
-    <circle cx="202" cy="184" r="1.6"/>
-    <circle cx="256" cy="116" r="1.7"/>
-    <circle cx="178" cy="220" r="1.5"/>
-    <circle cx="338" cy="212" r="1.5"/>
-  </g>
-  <g stroke="#fbbf24" stroke-width="2" stroke-linecap="round" opacity="0.75">
-    <line x1="214" y1="170" x2="205" y2="161"/>
-    <line x1="300" y1="164" x2="309" y2="155"/>
-    <line x1="322" y1="190" x2="334" y2="193"/>
-    <line x1="190" y1="196" x2="177" y2="193"/>
+    <!-- правый меч -->
+    <path d="M394 456 L416 434 L150 190 Z" fill="#22d3ee"/>
+    <path d="M409 430 L156 187" stroke="#c7f9ff" stroke-width="4" opacity="0.5"/>
+    <path d="M442 408 L368 482" stroke="#22d3ee" stroke-width="20"/>
+    <path d="M405 445 L450 490" stroke="#0e7490" stroke-width="22"/>
+    <circle cx="460" cy="500" r="13" fill="#22d3ee"/>
   </g>
 
   <!-- VS -->
-  <g filter="url(#vsGlow)">
-    <circle cx="256" cy="265" r="55" fill="#0b0912" stroke="url(#gold)" stroke-width="6"/>
-    <circle cx="256" cy="265" r="44" fill="#151022" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1.5"/>
-    <path d="M230,236 L252,220 L246,250 L274,240 L250,296 L256,266 Z"
-          fill="#f59e0b" opacity="0.16"/>
-    <text x="256" y="282" text-anchor="middle"
-          font-family="'Arial Black','Segoe UI',system-ui,sans-serif"
-          font-size="42" font-weight="900" font-style="italic"
-          letter-spacing="1" fill="url(#vsFill)">VS</text>
-  </g>
-
-  <!-- рамка и виньетка -->
-  <rect x="5" y="5" width="502" height="502" rx="26" fill="none" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="2"/>
-  <rect x="15" y="15" width="482" height="482" rx="20" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
-  <rect width="512" height="512" fill="url(#vignette)"/>
+  <ellipse cx="300" cy="330" rx="138" ry="88" fill="#05050a" opacity="0.7" filter="url(#soft)"/>
+  <text x="300" y="376" text-anchor="middle"
+        font-family="Arial Black, Arial, sans-serif"
+        font-size="148" font-weight="900" letter-spacing="6"
+        fill="url(#vsFill)">VS</text>
 </svg>
