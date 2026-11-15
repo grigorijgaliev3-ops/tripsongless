@@ -1457,3 +1457,86 @@ img {
     font-size: 26px;
   }
 }
+
+/* ============= Карточка «Битва артистов» в лобби ============= */
+
+.battle-cover {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #1a1a24;
+}
+
+.battle-cover .battle-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.battle-cover .battle-half-left {
+  left: 0;
+  transform-origin: left center;
+}
+
+.battle-cover .battle-half-right {
+  right: 0;
+  transform-origin: right center;
+}
+
+.battle-cover-vs {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: #221303;
+  background: radial-gradient(circle at 32% 24%, #ffe08a, #f59e0b 45%, #b45309 100%);
+  box-shadow:
+    0 0 0 2px rgba(245, 158, 11, 0.4),
+    0 0 30px rgba(245, 158, 11, 0.55),
+    inset 0 2px 5px rgba(255, 255, 255, 0.45);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.battle-card:hover .battle-cover-vs {
+  box-shadow:
+    0 0 0 3px rgba(245, 158, 11, 0.55),
+    0 0 44px rgba(245, 158, 11, 0.8),
+    inset 0 2px 5px rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 640px) {
+  .battle-cover-vs {
+    width: 46px;
+    height: 46px;
+    font-size: 14px;
+  }
+}
+
+/* Пять карточек в лобби: 5 в ряд на десктопе, 3 на планшете */
+@media (min-width: 1001px) {
+  .lobby {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1000px) {
+  .lobby {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+

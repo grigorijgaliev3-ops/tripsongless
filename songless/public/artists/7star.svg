@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0%" stop-color="#2a2350"/>
+      <stop offset="55%" stop-color="#141126"/>
+      <stop offset="100%" stop-color="#08070f"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fbbf24" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <path id="star" d="M0,-34 L8,-11 L32,-11 L13,4 L20,28 L0,13 L-20,28 L-13,4 L-32,-11 L-8,-11 Z"/>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <circle cx="256" cy="250" r="210" fill="url(#glow)" opacity="0.55"/>
+
+  <g filter="url(#soft)" fill="#fde68a">
+    <use href="#star" transform="translate(256 118) scale(1.35)"/>
+    <use href="#star" transform="translate(130 205) scale(0.72) rotate(-14)"/>
+    <use href="#star" transform="translate(382 200) scale(0.86) rotate(12)"/>
+    <use href="#star" transform="translate(176 330) scale(0.64) rotate(22)"/>
+    <use href="#star" transform="translate(342 326) scale(0.7) rotate(-20)"/>
+    <use href="#star" transform="translate(256 408) scale(0.8) rotate(8)"/>
+    <use href="#star" transform="translate(256 258) scale(0.9) rotate(-6)" fill="#fbbf24"/>
+  </g>
+
+  <g fill="#fff7d6" opacity="0.9">
+    <circle cx="96" cy="104" r="2.5"/>
+    <circle cx="420" cy="92" r="2"/>
+    <circle cx="438" cy="360" r="2.5"/>
+    <circle cx="72" cy="372" r="2"/>
+    <circle cx="256" cy="52" r="2"/>
+  </g>
+</svg>

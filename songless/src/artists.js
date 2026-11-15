@@ -1,0 +1,105 @@
+/* Участники «Битвы артистов».
+   Чтобы добавить нового — скопируй строку и поменяй данные.
+   photo: файл из public/ (например /artists/name.jpg) или любой внешний URL.
+   objectPosition: необязательно, полезно для нестандартных/широких фото. */
+export const ARTISTS = [
+  {
+    id: "pushka",
+    name: "Георгий Пушка",
+    photo: "/covers/pushka.jpg",
+    accent: "#f472b6",
+    symbol: "🔫",
+  },
+  {
+    id: "trippl",
+    name: "TRIPPL FLOW",
+    photo: "/artists/tf.jpg",
+    accent: "#8b5cff",
+    symbol: "🧂",
+    objectPosition: "left center",
+  },
+  {
+    id: "bychess",
+    name: "BYCHESS",
+    photo: "/covers/bychess.jpg",
+    accent: "#38bdf8",
+    symbol: "🐂",
+  },
+  {
+    id: "he3lly",
+    name: "he3lly",
+    photo: "/covers/trippl.jpg",
+    accent: "#a78bfa",
+    symbol: "🧂",
+  },
+  {
+    id: "7ugly",
+    name: "7ugly",
+    photo: "/artists/7ugly.jpg",
+    accent: "#22c55e",
+    symbol: "🧟",
+  },
+  {
+    id: "alonilon",
+    name: "alonilon",
+    photo: "/artists/alonilon.jpg",
+    accent: "#f59e0b",
+    symbol: "🎭",
+  },
+  {
+    id: "7star",
+    name: "7star",
+    photo: "/artists/7star.svg",
+    accent: "#eab308",
+    symbol: "⭐",
+  },
+  {
+    id: "rist",
+    name: "РИИИИИИИИИСТ",
+    photo: "/artists/rist.jpg",
+    accent: "#3b82f6",
+    symbol: "🇪🇪",
+  },
+  {
+    id: "kirill-granata",
+    name: "Кирилл Граната",
+    photo: "/artists/kirill-granata.jpg",
+    accent: "#ef4444",
+    symbol: "💣",
+  },
+  {
+    id: "giovanni",
+    name: "Giovanni Захарио",
+    photo: "/artists/giovanni.jpg",
+    accent: "#06b6d4",
+    symbol: "🥤",
+  },
+  {
+    id: "magistr98",
+    name: "МАГИСТР 98",
+    photo: "/artists/magistr98.jpg",
+    accent: "#a855f7",
+    symbol: "🧙",
+  },
+  {
+    id: "shmarat",
+    name: "Шмарат",
+    photo: "/artists/shmarat.png",
+    accent: "#94a3b8",
+    symbol: "🧮",
+  },
+  {
+    id: "golubev",
+    name: "Леха Голубев",
+    photo: "/artists/golubev.jpg",
+    accent: "#dc2626",
+    symbol: "🪑",
+  },
+  {
+    id: "lukoyl",
+    name: "юра лукойл",
+    photo: "/artists/lukoyl.jpg",
+    accent: "#f97316",
+    symbol: "⛽",
+  },
+];
