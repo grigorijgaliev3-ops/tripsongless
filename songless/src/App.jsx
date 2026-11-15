@@ -392,20 +392,12 @@ function Lobby({ onPick }) {
           >
             <div className="mode-cover battle-cover">
               <img
-                src="/covers/pushka.jpg"
+                src="/covers/battle.svg"
                 alt=""
                 loading="lazy"
                 decoding="async"
-                className="battle-half battle-half-left"
+                className="battle-art"
               />
-              <img
-                src="/covers/bychess.jpg"
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="battle-half battle-half-right"
-              />
-              <div className="battle-cover-vs">VS</div>
               <div className="mode-cover-glow" />
             </div>
             <div className="mode-info">
