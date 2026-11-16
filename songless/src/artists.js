@@ -76,7 +76,7 @@ export const ARTISTS = [
   },
   {
     id: "magistr98",
-    name: "МАГИСТР 98",
+    name: "Магистр 98",
     photo: "/artists/magistr98.jpg",
     accent: "#a855f7",
     symbol: "🧙",

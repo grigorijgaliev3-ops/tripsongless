@@ -14,7 +14,6 @@ import {
   saveHistoryEntry,
   clearHistory,
 } from "./battleLogic";
-import ParticleBackground from "./ParticleBackground";
 import "./ArtistBattle.css";
 
 const TOTAL_PAIRS = totalPairs(ARTISTS.length);
@@ -79,7 +78,6 @@ export default function ArtistBattle({ onBack }) {
   const [pair, setPair] = useState(null);
   const [played, setPlayed] = useState(0);
   const [picked, setPicked] = useState(null);
-  const [boost, setBoost] = useState(0);
   const [history, setHistory] = useState(() => loadHistory());
   const [shareNote, setShareNote] = useState("");
 
@@ -106,7 +104,6 @@ export default function ArtistBattle({ onBack }) {
     setPair(firstPair);
     setPlayed(0);
     setPicked(null);
-    setBoost(0);
     setShareNote("");
     lockRef.current = false;
     setStage("battle");
@@ -119,7 +116,6 @@ export default function ArtistBattle({ onBack }) {
     setPlayed(playedCount);
     setPair(null);
     setPicked(null);
-    setBoost(1);
     lockRef.current = false;
     setStage("result");
   }, []);
@@ -208,18 +204,16 @@ export default function ArtistBattle({ onBack }) {
 
   return (
     <>
-      <ParticleBackground boost={boost} symbol="⚔️" />
-
       <div className="app">
         <div className="inner">
           <header className="header battle-header">
-            <h1>⚔️ Битва артистов</h1>
+            <h1>Битва артистов</h1>
             <div className="subtitle">
               {stage === "intro"
-                ? "КТО ЛУЧШИЙ ИЗ ЛУЧШИХ"
+                ? "Кто лучший из лучших"
                 : stage === "battle"
-                  ? `МАТЧ ${Math.min(played + 1, matchCount)} ИЗ ${matchCount}`
-                  : "ТВОЙ ТОП"}
+                  ? `Матч ${Math.min(played + 1, matchCount)} из ${matchCount}`
+                  : "Твой топ"}
             </div>
           </header>
 
@@ -299,7 +293,7 @@ export default function ArtistBattle({ onBack }) {
               </div>
 
               <button className="btn primary battle-start" onClick={start}>
-                ⚔️ Начать битву
+                Начать битву
               </button>
 
               {history.length > 0 && (
@@ -405,7 +399,7 @@ export default function ArtistBattle({ onBack }) {
               </button>
 
               <div className="battle-result-head">
-                <div className="battle-result-title">🏆 Битва окончена</div>
+                <div className="battle-result-title">Битва окончена</div>
                 <div className="battle-result-sub">
                   {played} {pluralMatches(played)} · {ARTISTS.length} артистов
                 </div>
@@ -467,16 +461,16 @@ export default function ArtistBattle({ onBack }) {
 
               <div className="result-actions">
                 <button className="btn primary" onClick={start}>
-                  🔄 Ещё раз
+                  Ещё раз
                 </button>
                 <button className="btn ghost" onClick={onBack}>
                   ← В лобби
                 </button>
                 <button className="btn ghost" onClick={share}>
-                  📤 Поделиться
+                  Поделиться
                 </button>
                 <button className="btn ghost" onClick={copyTop}>
-                  📋 Скопировать топ
+                  Скопировать топ
                 </button>
               </div>
               {shareNote && <div className="share-note">{shareNote}</div>}

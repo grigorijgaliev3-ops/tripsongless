@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import ParticleBackground from "./ParticleBackground";
 import ArtistBattle from "./ArtistBattle";
 import { ARTISTS } from "./artists";
 
@@ -208,7 +207,7 @@ const ALL_TRACKS = [...PUSHKA_TRACKS, ...TRIPPL_TRACKS, ...BYCHESS_TRACKS];
 const MODES = {
   pushka: {
     id: "pushka",
-    name: "ГЕОРГИЙ ПУШКА",
+    name: "Георгий Пушка",
     cover: "/covers/pushka.jpg",
     accent: "#f472b6",
     symbol: "🔫",
@@ -232,7 +231,7 @@ const MODES = {
   },
   mix: {
     id: "mix",
-    name: "МИКС",
+    name: "Микс",
     cover: "/covers/mix.svg",
     accent: "#f59e0b",
     symbol: "🔀",
@@ -299,8 +298,7 @@ function MixModal({ max, onClose, onStart }) {
           ×
         </button>
 
-        <div className="mix-badge">🔀</div>
-        <div className="mix-title">МИКС</div>
+        <div className="mix-title">Микс</div>
         <div className="mix-sub">Сколько треков сыграем?</div>
 
         <div className="mix-count">
@@ -337,7 +335,7 @@ function MixModal({ max, onClose, onStart }) {
         </div>
 
         <button className="btn primary mix-start" onClick={() => onStart(count)}>
-          ▶ Погнали
+          Погнали
         </button>
       </div>
     </div>
@@ -353,8 +351,8 @@ function Lobby({ onPick }) {
     <div className="app">
       <div className="inner">
         <header className="header">
-          <h1>🎵 Угадай трек</h1>
-          <div className="subtitle">ВЫБЕРИ АРТИСТА</div>
+          <h1>Угадай трек</h1>
+          <div className="subtitle">Выбери артиста</div>
         </header>
 
         <div className="lobby">
@@ -363,18 +361,15 @@ function Lobby({ onPick }) {
             return (
               <button
                 key={key}
-                className="mode-card"
-                data-symbol={m.symbol}
-                style={{ "--accent": m.accent }}
+                className={"mode-card" + (key === "mix" ? " mix-card" : "")}
+                data-symbol={key === "mix" ? undefined : m.symbol}
                 onClick={() => (key === "mix" ? setMixOpen(true) : onPick(key))}
               >
                 <div className="mode-cover">
                   <img src={m.cover} alt={m.name} loading="lazy" decoding="async" />
-                  <div className="mode-cover-glow" />
                 </div>
                 <div className="mode-info">
                   <div className="mode-name">{m.name}</div>
-                  <div className="mode-subtitle">{m.subtitle}</div>
                   <div className="mode-count">
                     {m.tracks.length} {pluralTracks(m.tracks.length)}
                   </div>
@@ -386,8 +381,6 @@ function Lobby({ onPick }) {
 
           <button
             className="mode-card battle-card"
-            data-symbol="⚔️"
-            style={{ "--accent": "#f59e0b" }}
             onClick={() => onPick("battle")}
           >
             <div className="mode-cover battle-cover">
@@ -398,7 +391,6 @@ function Lobby({ onPick }) {
                 decoding="async"
                 className="battle-art"
               />
-              <div className="mode-cover-glow" />
             </div>
             <div className="mode-info">
               <div className="mode-name">БИТВА АРТИСТОВ</div>
@@ -449,7 +441,6 @@ export default function App() {
   const [current, setCurrent] = useState(0);
   const [locked, setLocked] = useState(false);
   const [result, setResult] = useState(null);
-  const [boost, setBoost] = useState(0);
 
   const [trackScore, setTrackScore] = useState(null);
   const [totalScore, setTotalScore] = useState(0);
@@ -472,8 +463,6 @@ export default function App() {
   const track = modeData ? pool[poolIndex] : null;
   const tracksTotal = pool.length;
   const maxScore = pool.length * SCORES[0];
-
-  const bgSymbol = modeData ? modeData.symbol : "🎵";
 
   const query = normalizeSoft(guess);
   const matches = modeData && query
@@ -512,7 +501,6 @@ export default function App() {
     setCurrent(0);
     setLocked(false);
     setResult(null);
-    setBoost(0);
     setTrackScore(null);
     setTotalScore(0);
     setGameOver(false);
@@ -629,8 +617,6 @@ export default function App() {
       setResult("win");
       setTrackScore(earned);
       setTotalScore((s) => s + earned);
-      setBoost(1);
-      setTimeout(() => setBoost(0), 4000);
       return;
     }
 
@@ -693,7 +679,6 @@ export default function App() {
   if (!mode) {
     return (
       <>
-        <ParticleBackground boost={0} symbol="🎵" />
         <Lobby onPick={startMode} />
       </>
     );
@@ -701,20 +686,19 @@ export default function App() {
 
   if (gameOver) {
     const percent = maxScore ? Math.round((totalScore / maxScore) * 100) : 0;
-    let verdict = "Неплохо!";
-    if (percent === 100) verdict = "Идеально! Ты легенда 🐐";
-    else if (percent >= 80) verdict = "Огонь! 🔥";
-    else if (percent >= 60) verdict = "Хороший результат!";
-    else if (percent >= 30) verdict = "Можно лучше 😉";
-    else verdict = "Ну... бывает 😅";
+    let verdict = "Неплохо";
+    if (percent === 100) verdict = "Идеально";
+    else if (percent >= 80) verdict = "Огонь";
+    else if (percent >= 60) verdict = "Хороший результат";
+    else if (percent >= 30) verdict = "Можно лучше";
+    else verdict = "Бывает";
 
     return (
       <>
-        <ParticleBackground boost={1} symbol={bgSymbol} />
         <div className="app">
           <div className="inner">
             <header className="header">
-              <h1>🏁 Игра окончена</h1>
+              <h1>Игра окончена</h1>
               <div className="subtitle">{modeData.name}</div>
             </header>
 
@@ -730,7 +714,7 @@ export default function App() {
                   className="btn primary new-btn"
                   onClick={() => startMode(mode, mode === "mix" ? pool.length : undefined)}
                 >
-                  🔄 Играть заново
+                  Играть заново
                 </button>
                 <button className="btn ghost new-btn" onClick={backToLobby}>
                   ← К выбору артиста
@@ -748,13 +732,13 @@ export default function App() {
 
   return (
     <>
-      <ParticleBackground boost={boost} symbol={bgSymbol} />
-
       <div className="app">
         <div className="inner">
           <header className="header">
-            <h1>🎵 {modeData.name}</h1>
-            <div className="subtitle">{modeData.subtitle}</div>
+            <h1>{modeData.name}</h1>
+            <div className="subtitle">
+              {poolIndex + 1} из {tracksTotal} · попытка {current + 1} из {MAX_ATTEMPTS}
+            </div>
           </header>
 
           <div className="board">
@@ -777,24 +761,24 @@ export default function App() {
                 </span>
               </div>
               <div className="stat">
-                <span className="stat-label">Осталось попыток</span>
+                <span className="stat-label">Попыток</span>
                 <span className="stat-value">{attemptsLeft}</span>
               </div>
             </div>
 
             <div className="play-row">
               <button className="btn primary" onClick={play} disabled={locked}>
-                {playing ? "⏸ Играет..." : "▶ Слушать"}
+                {playing ? "Играет…" : "Слушать"}
               </button>
               <button
                 className="btn ghost"
                 onClick={skip}
                 disabled={locked || playing}
               >
-                ⏭ Пропустить
+                Пропустить
               </button>
               <button className="btn danger" onClick={surrender} disabled={locked}>
-                🏳 Сдаться
+                Сдаться
               </button>
             </div>
 
@@ -820,7 +804,7 @@ export default function App() {
                 type="text"
                 value={guess}
                 disabled={locked}
-                placeholder="Начни вводить название…"
+                placeholder="Название трека"
                 onChange={(e) => {
                   setGuess(e.target.value);
                   setOpen(true);
@@ -864,7 +848,7 @@ export default function App() {
               {result ? (
                 <div className={"result " + result}>
                   <div className="result-line">
-                    {result === "win" ? "🎉 Вы выиграли!" : "😔 Вы проиграли."}
+                    {result === "win" ? "Верно" : "Не угадал"}
                   </div>
                   {result === "win" && (
                     <div className="result-points">
@@ -877,8 +861,8 @@ export default function App() {
                   <div className="result-file">{displayName(track.file)}</div>
                   <button className="btn primary new-btn" onClick={nextTrack}>
                     {poolIndex + 1 >= pool.length
-                      ? "🏁 Показать итог"
-                      : "➡ Следующий трек"}
+                      ? "Показать итог"
+                      : "Следующий трек"}
                   </button>
                 </div>
               ) : history.length === 0 ? (
